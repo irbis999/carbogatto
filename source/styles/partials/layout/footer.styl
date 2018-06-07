@@ -1,0 +1,103 @@
+footer.main
+  color white
+  background image-url('main/bg.jpg') top center / cover
+  font-size 1.17em
+  line-height 1.5
+  position relative
+  border-bottom 2px solid color-blue
+  .site-container
+    padding 3em .8em 7em .8em
+  .title
+    text-transform uppercase
+    margin-bottom 1em
+    font-weight 300
+  .menu
+    float left
+    width 50%
+    margin-bottom 1.3em
+    a
+      text-transform uppercase
+      font-weight bold
+      display inline-block
+      margin-bottom .3em
+      letter-spacing .1em
+  .social
+    float right
+    width 50%
+    @extend .clearfix
+    svg
+      float left
+      width 26px
+      height @width
+      fill color-blue
+      margin 0 17px 0 0
+      &.__fb
+        width 20px
+        height @width
+        position relative
+        top 2px
+    .copy
+      position absolute
+      text-align center
+      width 15em
+      bottom 2.5em
+      left 50%
+      margin-left -7.5em
+      font-size 1.33rem
+      em
+        color color-blue
+        font-style normal
+        display inline-block
+        margin 0 .5em
+  .contacts
+    float left
+    width 50%
+    clear both
+    a
+      font-weight bold
+      display inline-block
+      margin-bottom .3em
+  .address
+    float left
+    width 50%
+    padding-right 2em
+    box-sizing border-box
+  @media (min-width mup)
+    //TODO фон не совпадает при наложениях. Нужно доработать это
+    background-size 650px
+    font-size 1em
+    .site-container
+      padding 5em 0 2.5em 0
+    .title
+      font-size .9em
+      margin-bottom 1.5em
+    .menu
+      width 27%
+    .contacts
+      width 27%
+      clear none
+      a
+        font-size .95em
+    .address
+      width 27%
+    .social
+      width 205px
+      padding-top 2.5em
+      svg
+        width 50px
+        height @width
+        margin-right 2em
+        margin-bottom 2em
+        &.__youtube
+          margin-right 0
+        &.__fb
+          width 40px
+          height @width
+          top 5px
+      .copy
+        width auto
+        margin-left 0
+        clear both
+        position static
+        text-align right
+        font-size 1.6rem

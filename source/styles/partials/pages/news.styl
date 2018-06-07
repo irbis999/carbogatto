@@ -1,0 +1,76 @@
+section.main.news
+  article
+    .site-container
+      background no-repeat right bottom
+      background-size 320px
+      padding 1.8em container-padding 1.5em container-padding
+    time
+      text-transform uppercase
+      font-weight bold
+      font-size .8em
+      opacity .5
+      display block
+      margin-bottom 1em
+      span:not(:last-of-type)
+        &::after
+          content: '|'
+          margin 0 .7em
+    .title
+      font-size 1.67em
+      text-transform uppercase
+      font-weight bold
+      margin-bottom .7em
+    .desc
+      font-size .89em
+      margin 0 10em 170px 0
+      line-height 1.5
+    .button-component
+      background color-blue
+      border-color color-blue
+    &.__yellow
+      background-color #ffd600
+    &.__black
+      background-color #222222
+      color white
+      .desc
+        opacity .9
+    &.__white
+      background-color white
+    &.__blue
+      background-color color-blue
+      color white
+      time
+        color black
+      .button-component
+        background white
+        color color-blue
+    &.__photo
+      color white
+      .site-container
+        background-position left top
+        background-size auto 100%
+
+  @media (min-width mup)
+    article
+      .site-container
+        padding-top 3em
+        padding-bottom 8em
+        position relative
+        min-height 500px
+        box-sizing border-box
+        background-size auto
+        padding-left 1.3em
+      time
+        font-size .93em
+      .title
+        width 550px
+        font-size 1.94em
+        line-height 1.2
+      .desc
+        width 450px
+        font-size 1.03em
+        margin-bottom 0
+      .button-component
+        position absolute
+        left container-padding
+        bottom 2.5em

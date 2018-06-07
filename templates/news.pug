@@ -1,0 +1,61 @@
+extends layout/layout
+
+block body
+	section.main.news
+		article.__yellow
+			//Картинки располагаются в правом нижнем углу
+				ширина для мобайла 640
+				ширина для десктопа - тут на вкус и цвет.
+				Просто нужно помнить, что располагается картинка в правом нижем углу - background no-repeat right bottom
+			.site-container(data-src-mobile='../build/img/pages/news/euro.jpg',
+			data-src-desktop='../build/img/pages/news/euro-d.jpg')
+				time
+					span 15
+					span april
+					span 2018
+				.title see you at the Eurobike 2018 JULY 8 — 10, 2018
+				.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				a.button-component(href='#') Read more
+		article.__black
+			.site-container(data-src-mobile='../build/img/pages/news/tires.jpg',
+			data-src-desktop='../build/img/pages/news/tires-d.jpg')
+				time
+					span 1
+					span march
+					span 2018
+				.title New tires arrival
+				.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				a.button-component(href='#') Read more
+		article.__white
+			.site-container(data-src-mobile='../build/img/pages/news/motor.jpg',
+			data-src-desktop='../build/img/pages/news/motor-d.jpg')
+				time
+					span 1
+					span march
+					span 2018
+				.title Motor upgrade
+				.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				a.button-component(href='#') Read more
+		article.__blue
+			.site-container(data-src-mobile='../build/img/pages/news/const.jpg',
+			data-src-desktop='../build/img/pages/news/const-d.jpg')
+				time
+					span 1
+					span march
+					span 2018
+				.title BIKE CONSTRUCTOR IS AVIALABLE ON OUR SITE
+				.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				a.button-component(href='#') Try now
+		article.__photo
+			//Для блока с фото
+				ширина для мобайла 700
+				ширина для десктопа 1200
+			.site-container(data-src-mobile='../build/img/pages/news/photo.jpg',
+			data-src-desktop='../build/img/pages/news/photo-d.jpg')
+				time
+					span 1
+					span march
+					span 2018
+				.title news with photo
+				.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				a.button-component(href='#') read more

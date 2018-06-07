@@ -1,0 +1,54 @@
+extends layout/layout
+
+block body
+	section.main.about
+		.about-block.lozad
+			.site-container
+				.container
+					.combs
+						each val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
+							img(src='../build/img/pages/about/combs.svg')
+					.content
+						.title About us
+						.cols
+							p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+							p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+							p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+							p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+							p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+		.site-container
+			.gallery-block
+				.title Production
+				.gallery
+					.prev
+					.next
+					.pager
+					.slides
+						//Желательно 1100 в ширину
+						img(src='../build/img/plugs/gallery1.jpg')
+						img(src='http://loveopium.ru/content/2013/09/altai/09.jpg')
+						img(src='../build/img/plugs/gallery1.jpg')
+			.team-block.lozad
+				.container
+					.title Team
+					each val in [1,2,3,4,5,6]
+						.team-item.lozad
+							//Картинка не беке желательно 300 в ширину и пропорции ближе к квадратным
+							.photo(style='background-image: url(../build/img/plugs/gallery1.jpg)')
+								img(src='../build/img/main/spacer_hex.png')
+							span Konstantin Petrov
+							small CEO
+							p Short BIO strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a sm
+		.partners-block
+			.title Partners
+			.items
+				a.item(href='#')
+					//Ширина 170. Желательно пропорции ближе к 170х50
+					img(src='../build/img/pages/about-partner-1.png')
+				a.item(href='#')
+					img(src='../build/img/pages/about-partner-2.png')
+				a.item(href='#')
+					img(src='../build/img/pages/about-partner-3.png')
+				a.item(href='#')
+					img(src='../build/img/pages/about-partner-4.png')
+			a.button-component(href='#') Become a partner

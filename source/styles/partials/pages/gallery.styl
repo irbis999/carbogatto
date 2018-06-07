@@ -1,0 +1,145 @@
+.gallery-modal
+  display none
+  position relative
+  z-index 100
+  .bg
+    left 0
+    top 0
+    width 100%
+    height 100%
+    position fixed
+    z-index 100
+    background rgba(black, .9)
+  .content
+    position fixed
+    z-index 101
+    width 100%
+    height 100%
+    left 0
+    top 0
+    box-sizing border-box
+    overflow-y auto
+    padding 60px 0 1em 0
+    .container
+      padding 0 8px
+    .close
+      cursor pointer
+      position absolute
+      right 5px
+      top -40px
+      width 15px
+      height @width
+      z-index 3
+      padding 8px
+      fill color-blue
+    .prev, .next
+      position absolute
+      top 50%
+      cursor pointer
+      width 11px
+      height 22px
+      background image-url('main/arrow_prev.png') no-repeat center center / 11px 22px
+      left 5px
+      margin-top -30px
+      z-index 1
+      padding 10px
+    .next
+      left auto
+      right 5px
+      background-image image-url('main/arrow_next.png')
+    .pager
+      position absolute
+      left 0
+      bottom 1em
+      width 100%
+      text-align center
+      z-index 1
+      &-inner
+        display inline-block
+        margin 0
+        padding 0
+        li
+          padding 0
+          display inline-block
+          width 4px
+          height @width
+          background white
+          border-radius 50%
+          margin 0 3px
+          button
+            display none
+          &.slick-active
+            background color-blue
+    .slides
+      .slide
+        text-align center
+        img
+          max-height 90vh
+          display inline-block
+
+section.main.gallery
+  background black
+  .items
+    @extend .clearfix
+    border-top 1px solid color-blue
+    display flex
+    flex-wrap wrap
+    align-items stretch
+    .item
+      flex-basis 33.3333%
+      @extend .clearfix
+      border 1px solid color-blue
+      border-top none
+      box-sizing border-box
+      cursor pointer
+      overflow hidden
+      &.__double
+        flex-basis 66.6666%
+      &.__triple
+        flex-basis 99.9999%
+      .spacer
+        width 100%
+        float left
+        background top center / cover
+
+@media (min-width mup)
+  .gallery-modal
+    .content
+      padding-top 100px
+      .container
+        padding 0
+        width auto
+        max-width site-container-mup-max-width
+        min-width site-container-mup-min-width
+      .close
+        top -50px
+        width 23px
+        height @width
+      .prev, .next
+        width 22px
+        height 44px
+        margin-top -22px
+        background-size 22px 44px
+        padding-top 0
+        padding-bottom 0
+      .prev
+        left 20px
+      .next
+        right 20px
+      .pager
+        bottom 1.5em
+        &-inner
+          padding 0 .3em
+          li
+            width 7px
+            height @width
+            margin 0 5px
+  section.main.gallery
+    .items
+      border-top-width 2px
+      .item
+        border-width 2px
+        .spacer
+          transition transform .8s
+          &:hover
+            transform scale(1.05)

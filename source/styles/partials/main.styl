@@ -1,0 +1,49 @@
+html
+  font-size font-size-main
+body
+  font-family font-family-main
+  color font-color-main
+  line-height line-height-main
+  min-width site-container-min-width
+  max-width site-container-max-width
+  margin 0 auto
+.site-container
+  margin 0 auto
+  max-width site-container-max-width
+  min-width site-container-min-width
+  box-sizing border-box
+  @extend .clearfix
+a
+  color link-color
+  text-decoration none
+  &:hover
+    text-decoration underline
+  &.__styleless
+    color inherit
+img, iframe, object, embed, video
+  max-width 100%
+.container
+  padding-left container-padding
+  padding-right @padding-left
+  @extend .clearfix
+  &.__relative
+    position relative
+.anti-container
+  margin-left -(container-padding)
+  margin-right @margin-left
+
+@media (min-width mup)
+  body
+    min-width site-container-mup-min-width
+    max-width none
+    font-size font-size-main-mup
+    line-height 1.45
+  .site-container
+    max-width site-container-mup-max-width
+    min-width site-container-mup-min-width
+  .container
+    padding-left 0
+    padding-right @padding-left
+    width site-container-mup-min-width
+    margin-left auto
+    margin-right @margin-left
