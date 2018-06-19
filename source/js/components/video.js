@@ -16,6 +16,7 @@ class Video {
 		if(window.innerWidth < this.mup) return
 		this.videoElems.each((index, elem) => {
 			$(elem).attr('src', $(elem).data('src'))
+			$(elem).attr('poster', $(elem).data('poster'))
 		})
 		this.inited = true
 	}

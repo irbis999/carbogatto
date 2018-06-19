@@ -6,44 +6,29 @@ block body
 			.container
 				.page-title How we can help you?
 				form.search-form
-					input.query(placeholder='search')
-					button.button-component.__blue FAQ
-				.recent
+					input.query(placeholder='Search')
+				.faq-button-container
+					.button-component.__blue FAQ
+				.col
 					.block-title Recent activity
 					.row
 						.num 30
-						a.title(href='#') Ноw I can buy that bike in USA?
+						.title: a(href='#') Ноw I can buy that bike in USA? Ноw I can buy that bike in USA?
 						.desc Article created 15 minuteas ago
 					.row
 						.num.__grey 0
-						a.title(href='#') Ноw I can upgrade my battery?
+						.title: a(href='#') Ноw I can upgrade my battery?
 						.desc Article created 2 days ago
 					each val in [1,2,3]
 						.row
 							.num 235
-							a.title(href='#') Ноw I can buy that bike in USA?
+							.title: a(href='#') Ноw I can buy that bike in USA?
 							.desc Article created 15 minuteas ago
-				.upgrade
+				.col.__left
 					.block-title Upgrade
-					.row: a.title(href='#') Ноw I can buy that bike in USA?
-					.row: a.title(href='#') Ноw I can upgrade my battery?
-					.row: a.title(href='#') Need to understand, where I can charge battery?
-					.row: a.title(href='#') Ноw I can upgrade my battery?
-					.row: a.title(href='#') Ноw I can buy that bike in USA?
-				.repairs
+					each val in [1,2,3,4,5]
+						.row: .title: a(href='#') Ноw I can buy that bike in USA?
+				.col.__right
 					.block-title Repairs
-					.row: a.title(href='#') Ноw I can buy that bike in USA?
-					.row: a.title(href='#') Ноw I can upgrade my battery?
-					.row: a.title(href='#') Need to understand, where I can charge battery?
-					.row: a.title(href='#') Ноw I can upgrade my battery?
-					.row: a.title(href='#') Ноw I can buy that bike in USA?
-		form.partners-block
-			.site-container
-				.container
-					.page-title Become a partner
-					input(type='text', placeholder='Name', required)
-					input(type='email', placeholder='Email', required)
-					input.__last(type='tel', placeholder='Phone number')
-					textarea(placeholder='Introduce yourself', required)
-					.text-center
-						button.button-component Apply
+					each val in [1,2,3,4,5]
+						.row: .title: a(href='#') Ноw I can buy that bike in USA?

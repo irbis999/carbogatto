@@ -1,0 +1,21 @@
+@import "mixins.styl"
+
+section.main.index
+  .tyres-block
+    background no-repeat image-url('pages/index/tyres-bg.jpg') 50% 40px / 160px
+    margin-bottom 4em
+    container-styles()
+    .logos
+      width 225px
+      margin 0 auto 2em auto
+      display block
+      opacity 0
+    .title
+      margin-bottom 140px
+
+    @media (min-width mup)
+      block-base(50% 100px)
+      .logos
+        width auto
+      .title
+        margin-bottom 300px

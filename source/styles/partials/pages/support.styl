@@ -9,54 +9,81 @@ section.main.support
     font-size 2em
     text-transform uppercase
     text-align center
-    margin .3em 0 1em 0
+    margin .3em 0 .7em 0
     font-weight 300
+    &.__left
+      text-align left
   .search-form
     text-align center
-    margin-bottom 2em
+    margin-bottom 1em
+    &.__left
+      margin-bottom 2em
+      .query
+        margin-left 0
     .query
-      text-transform uppercase
-      border 1px solid color-blue
+      border 1px solid #F5F5F5
       border-radius 0
       width 12em
       display block
       margin 0 auto 1em auto
       font-size 1.3em
-      padding .3em .8em .3em 23px
+      padding .3em .8em .3em 25px
       outline none
-      background image-url('svg-sprite/search.svg') no-repeat 3px 3px / 15px
+      background image-url('svg-sprite/search.svg') no-repeat 4px 4px / 14px
+  .faq-button-container
+    margin-bottom 2em
+    text-align center
     .button-component
       padding-left 2.5em
       padding-right @padding-left
-      outline none
   .block-title
     text-transform uppercase
     padding-bottom .5em
     margin-bottom 1em
-    border-bottom 1px solid #b7b7b7
+    border-bottom 1px solid color-blue
     font-weight bold
     color #080808
+    em
+      font-style normal
+      margin 0 .4em
+      font-weight normal
+    span
+      font-weight normal
+      text-transform none
   .row
     @extend .clearfix
     border-bottom 1px solid lighten(#b7b7b7, 70%)
     padding-bottom 1em
     margin-bottom 1em
+    &:hover
+      .desc
+        color black
     .title
-      margin-right 9em
+      margin-right 5em
       margin-bottom .2em
-      color black
-      display inline-block
+      span
+        background #AFF1FF
+        padding .2em .3em
+      a
+        color black
+        font-weight bold
+        display inline-block
+        &:hover
+          color color-blue
     .desc
       margin-right 10em
-      color #8a8a8a
+      color #ABABAB
+      font-size .7em
     .num
       float right
       background color-blue
       color white
       padding .4em 0
       position relative
-      width 2.7em
+      width 3.2em
       text-align center
+      font-size .6em
+      margin-top .5em
       &::after
         content ''
         display inline-block
@@ -73,100 +100,66 @@ section.main.support
         background #d0d0d0
         &::after
           border-top-color #d0d0d0
-  .recent
-    margin-bottom 2.5em
-  .upgrade
-    margin-bottom 2.5em
-  .repairs
-    margin-bottom 2.5em
-  .partners-block
-    padding 1em 0 2em
-    background color-blue
-    [type='text'], [type='email'], [type='tel'], textarea
-      text-transform uppercase
-      outline none
-      border-radius 0
-      padding .3em 1em
-      box-sizing border-box
-      width 100%
-      margin-bottom 1em
-      font-size 1.1em
-      border none
-    textarea
-      height 7em
-    .button-component
-      background black
-      border-color black
+  .col
+    margin-bottom 4em
 
   @media (min-width mup)
     padding-top .5em
     .page-title
-      font-size 1.92em
+      font-size 2.45em
       margin-bottom .7em
+      &.__left
+        float left
+        margin 4rem 0 3rem 0
     .search-form
       margin-bottom 3.5em
+      &.__left
+        float right
+        margin 4rem 0 3rem 0
       .query
-        font-size .96em
+        font-size 1.16em
         padding .4em 1em .4em 40px
         border-width 1.5px
-        background-position 7px 5px
-        background-size 22px
-        width 14em
+        background-position 7px 7px
+        background-size 24px
+        width 250px
+        box-sizing border-box
+    .faq-button-container
       .button-component
-        font-size .92em
-        padding .7em 2.7em
+        font-size 1.16em
+        padding .3em 2.3em
     .block-title
-      font-size .92em
+      font-size 1.16em
       margin-bottom .8em
+      border-bottom-width 2px
     .row
       padding-bottom .8em
       margin-bottom .8em
       .title
-        font-size .92em
+        font-size 1.16em
         float left
-        margin 5px 25em 0 0
+        margin 5px 0 0 0
+        width calc(100% - 300px)
       .desc
         text-align right
-        width 20em
         margin 5px 1em 0 0
         float right
-        font-size .81em
+        width 240px
+        font-size .77em
       .num
-        font-size .92em
+        font-size .65em
         padding .2em 0
         &::after
           left 4px
           border-width 7px
           margin-top -8px
-    .upgrade
+    .col.__left, .col.__right
       float left
       width 47%
       .title
         float none
-        margin-right 0
-    .repairs
+        width auto
+    .col.__right
       float right
-      width 47%
-      .title
-        float none
-        margin-right 0
-    .partners-block
-      padding 2.5em 0 4em 0
-      [type='text'], [type='email'], [type='tel']
-        float left
-        width 32%
-        margin-right 2%
-        padding .8em 1em
-        font-size .92em
-        margin-bottom 1.2em
-        &.__last
-          margin-right 0
-      textarea
-        clear both
-        padding .5em 1em
-        height 9em
-        font-size .92em
-      .button-component
-        font-size .92em
-        padding .7em 2em
-        outline none
+
+

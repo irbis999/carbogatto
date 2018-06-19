@@ -1,0 +1,43 @@
+@import "mixins.styl"
+
+section.main.index
+  .stand-block
+    background black no-repeat image-url('pages/index/stand-bg.jpg') 50% 30px / 100%
+    container-styles()
+    .text-block
+      padding-top 2em
+    .bike
+      position absolute
+      top 73%
+      right 52%
+      text-transform uppercase
+      color rgba(#c6c6c6, .6)
+      font-size .75em
+      padding 2em 0 2em 70px
+      border-top 1px solid rgba(#c6c6c6, .3)
+      border-bottom 1px solid rgba(#c6c6c6, .3)
+      width 125px
+      box-sizing border-box
+      .bike-icon
+        position absolute
+        left 0
+        top 8px
+        width 60px
+        height 29px
+
+    @media (min-width mup)
+      mup-video-block()
+      .bike
+        border-top-width 2px
+        border-bottom-width 2px
+        right auto
+        left 65%
+        top 63%
+        width 350px
+        font-size 1.21em
+        padding 2em 0 2em 200px
+        .bike-icon
+          width 167px
+          height 79px
+          left 10px
+          top 35px

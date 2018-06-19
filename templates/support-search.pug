@@ -1,0 +1,35 @@
+extends layout/layout
+
+block body
+	section.main.support
+		.site-container
+			.container
+				.page-title.__left Search
+				form.search-form.__left
+					input.query(placeholder='Search',
+					value='How i can buy bike in USA?')
+				.clear
+				.col
+					.block-title
+						a(href='#') SUPPORT
+						em >
+						span SEARCH: How i can buy bike in USA bike in USA bike in USA?
+					.row
+						.num 30
+						.title
+							a(href='#')
+								| Ноw I can buy that <span>bike</span> in USA? Ноw I can buy that bike in USA?
+						.desc Article created 15 minuteas ago
+					.row
+						.num.__grey 0
+						.title
+							a(href='#')
+								| Ноw I can <span>upgrade</span> my battery?
+						.desc Article created 2 days ago
+					each val in [1,2,3,4,5,6,7,8]
+						.row
+							.num 235
+							.title
+								a(href='#')
+									| Ноw I can <span>upgrade</span> my battery?
+							.desc Article created 15 minuteas ago

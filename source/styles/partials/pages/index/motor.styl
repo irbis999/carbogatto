@@ -1,0 +1,28 @@
+@import "mixins.styl"
+
+section.main.index
+  .motor-block
+    background black no-repeat image-url('pages/index/motor-bg.jpg') 50% 30px / 100%
+    container-styles()
+    .icons-block
+      right 72%
+      top 50%
+    .text-block
+      padding-top 2em
+    .button
+      margin-top .5em
+      padding-left 1.8em
+      padding-right 2.4em
+    @media (min-width mup)
+      mup-video-block()
+      .icons-block
+        right 75%
+        top 49%
+        .icons-title
+          margin-left 65px
+        .icons-text
+          margin-left 65px
+      .button
+        margin-top .8em
+        padding-left 3em
+        padding-right 3.5em
