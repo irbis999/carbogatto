@@ -1,0 +1,226 @@
+section.main.index
+  color white
+  border-bottom 1px solid transparent
+  box-sizing border-box
+  //Не получается ставить черный бек всей секции
+  //есть блок frame который содержит видео с z-index -1
+  .bg-block
+    background black
+    //Без отступа иногда торчит белый фон снизу
+    margin-bottom -1px
+    @extend .clearfix
+  p
+    font-weight 300
+    text-align center
+  .title
+    font-size 2.04em
+    text-transform uppercase
+    font-weight 300
+    text-align center
+    margin-bottom .5em
+    &.__absolute
+      position absolute
+      top 0
+      width 100%
+      left 0
+      z-index 2
+      //Блоку нельзя ставить фон - сзади на десктопе видео с z-index -1
+      background black
+  .video-container
+    display none
+  .relative-container
+    position relative
+    @extend .clearfix
+  .block-spacer
+    max-width none
+    width calc(100% + 30px)
+    float left
+    box-sizing border-box
+    margin-left -(container-padding)
+    padding-bottom 1.5em
+    margin-bottom 1.2em
+    &.__no-padding
+      padding-bottom 0
+  .text-block
+    clear both
+    background black
+    margin-left -(container-padding)
+    margin-right @margin-left
+    padding 0 container-padding 4em container-padding
+  .icons-block
+    position absolute
+    right 45px
+    top 60px
+    width 85px
+    overflow hidden
+    .icons-line
+      border-bottom 1px solid rgba(#c6c6c6, .3)
+      transform translateX(-100%)
+    .icons-row
+      padding .5em 0
+      position relative
+      &.__no-border
+        border-bottom none
+      .icons-icon
+        position absolute
+        left 8px
+        top 8px
+        width 16px
+        height auto
+        &.__battery
+          height 8.5px
+          .__body
+            opacity 0
+          for num in 1 2 3 4 5 6 7 8 9 10
+            .__{num}
+              opacity 0
+        &.__voltage
+          width 15px
+          height @width
+          top 5px
+          transform scale(.1)
+          opacity 0
+        &.__range
+          height 7.7px
+          .wheel-left, .wheel-right, .dots, .flag
+            opacity 0
+        &.__speed
+          width 17.5px
+          top 3px
+          .__arrow
+            transform-origin 50% 70% 0
+            transform rotate(-165deg)
+        &.__power
+          width 19px
+          height 10.8px
+          top 5px
+          opacity 0
+        &.__features
+          width 20px
+          top 5px
+          for num in 1 2 3 4
+            .__{num}
+              opacity 0
+      .icons-title
+        font-weight bold
+        color #00d2ff
+        font-size .72em
+        margin-left 30px
+        .__number:not(.__no-margin)
+          &::after
+            content ' '
+        &.__pink
+          color #ec659e
+        &.__yellow
+          color #e79d37
+      .icons-text
+        margin-left 30px
+        font-size .72em
+        color rgba(#c6c6c6, .6)
+        text-transform uppercase
+  .button
+    text-transform uppercase
+    position relative
+    display inline-block
+    border 1px solid color-blue
+    padding .8em 3em
+    background no-repeat image-url('main/arrow-right-white.png') calc(100% - 5px) .9em / 5px
+    color white
+    font-weight 300
+    transition background .3s
+    &:hover
+      text-decoration none
+      background-color rgba(white, .15)
+
+  @media (min-width mup)
+    .block-spacer
+      display none
+    .relative-container
+      margin-top 1.5em
+    .video-container
+      display block
+      position relative
+      @extend .clearfix
+      .top-line, .bottom-line
+        position absolute
+        left 0
+        top 0
+        height 25px
+        width 100%
+        background linear-gradient(to top, rgba(black, 0), rgba(black, 1))
+      .bottom-line
+        top auto
+        bottom 0
+        background linear-gradient(to bottom, rgba(black, 0), rgba(black, 1))
+      video
+        background black
+        margin 2.5em 0 0 0
+        float left
+        width 100%
+        position relative
+        z-index 0
+        display block
+        backface-visibility hidden
+        z-index -1
+    .text-block
+      padding-top 1em
+      margin-left 0
+      margin-right 0
+    .button
+      font-size 1.19em
+      background-size 10px auto
+      background-position calc(100% - 10px) .6em
+      padding .5em 3em
+      border-width 1.5px
+    p
+      opacity .9
+      font-size 1.16em
+      width 820px
+      margin-left auto
+      margin-right auto
+    .title
+      font-size 2.38em
+      &.__absolute
+        top 0
+        z-index 2
+        padding-bottom .8em
+        background linear-gradient(to bottom, rgba(black, 1), rgba(black, 1) 1.7em, rgba(black, 0))
+    .icons-block
+      width 240px
+      top 120px
+      right 140px
+      .icons-line
+        border-bottom-width 2px
+      .icons-row
+        padding 1em 0
+        .icons-icon
+          width 47px
+          left 27px
+          top 27px
+          &.__battery
+            height 25px
+          &.__voltage
+            width 42px
+            height @width
+            top 20px
+          &.__range
+            height 22.5px
+          &.__speed
+            width 50px
+            left 0
+            top 17px
+          &.__power
+            width 54px
+            height 30.8px
+            left 0
+            top 20px
+          &.__features
+            width 58px
+            left 0
+            top 20px
+        .icons-title
+          font-size 1.19em
+          margin-left 95px
+        .icons-text
+          margin-left 95px
+          font-size 1.19em

@@ -1,4 +1,13 @@
+//Секция содержит стили как для листинга новостей так и для страницы отдельной новости
+//т.к. страница отдельной новости содержит блок с картинкой почти такой же как в листинге
 section.main.news
+  .button-component
+    background color-blue
+    border-color color-blue
+    &.__back
+      padding-left 2.3em
+      padding-right 1.8em
+      background color-blue image-url('main/arrow-left-white.png') no-repeat 10% 45% / auto 50%
   article
     .site-container
       background no-repeat right bottom
@@ -24,9 +33,7 @@ section.main.news
       font-size .89em
       margin 0 10em 170px 0
       line-height 1.5
-    .button-component
-      background color-blue
-      border-color color-blue
+
     &.__yellow
       background-color #ffd600
     &.__black
@@ -42,15 +49,27 @@ section.main.news
       time
         color black
       .button-component
-        background white
+        background-color white
         color color-blue
+        &.__back
+          background-image image-url('main/arrow_prev.png')
     &.__photo
       color white
       .site-container
         background-position left top
         background-size auto 100%
+  //Контент отдельной новости
+  .new-content
+    padding 1em 2em 2em 2em
+    p
+      margin 1.3em 0
+    .button-container
+      text-align center
+      margin 3em 0 1em 0
 
   @media (min-width mup)
+    .button-component
+      font-size 1em
     article
       .site-container
         padding-top 3em
@@ -72,5 +91,11 @@ section.main.news
         margin-bottom 0
       .button-component
         position absolute
-        left container-padding
+        left container-padding + 5px
         bottom 2.5em
+    .new-content
+      margin 0 auto
+      width 800px
+      padding 3em 0
+      p
+        font-size 1.14em

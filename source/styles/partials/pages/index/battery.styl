@@ -1,0 +1,16 @@
+@import "mixins.styl"
+
+section.main.index
+  .battery-block
+    background black no-repeat image-url('pages/index/battery-bg.jpg') 50% 31px / 100%
+    container-styles()
+    .text-block
+      padding-top 2em
+    .icons-block
+      right 10%
+      top 30%
+    @media (min-width mup)
+      mup-video-block()
+      .icons-block
+        right 20%
+        top 15%

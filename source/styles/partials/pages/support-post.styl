@@ -1,0 +1,116 @@
+section.main.support.post
+  .page-title
+    text-transform none
+    text-align left
+    margin-right 4em
+  .user-block
+    color inherit
+    display inline-block
+    @extend .clearfix
+    margin-bottom .5em
+    .user-avatar
+      float left
+      width 28px
+      height @width
+      background image-url('main/avatar.svg') top center / cover
+    .user-text
+      float left
+      margin .5em 0 0 1em
+      max-width 15em
+      .user-time
+        color #ababab
+        font-size .8em
+    .button-component
+      float left
+      margin .3em 0 0 1.3em
+      padding .5em 1.3em
+  .content-block
+    border-bottom 1px solid #ededed
+    margin-bottom 1.5em
+    p
+      margin 1.3em 0
+  .share-component
+    text-align center
+    margin-bottom 2.5em
+    .ct-sc-link
+      width 20px
+      height @width
+      margin 0 .4em
+      background top center / cover
+      cursor pointer
+      display inline-block
+      &.__twitter
+        background-image image-url('main/twitter-grey.png')
+      &.__fb
+        background-image image-url('main/fb-grey.png')
+      &.__in
+        background-image image-url('main/in-grey.png')
+      &.__google
+        background-image image-url('main/google-grey.png')
+  .poll-block
+    border-bottom 1px solid #ededed
+    margin-bottom 5em
+    padding-bottom .8em
+    text-align center
+    p
+      margin 0 0 .7em 0
+      span::after
+        content ' '
+    .buttons
+      margin-bottom 1em
+      a
+        display inline-block
+        background color-blue
+        color white
+        width 8em
+        padding .5em
+        margin 0 .2em
+        text-transform uppercase
+        &:hover
+          text-decoration none
+    small
+      color #ABABAB
+      font-size .7em
+      display block
+      margin-bottom .7em
+
+  @media (min-width mup)
+    .page-title
+      margin-right 300px
+    .search-form
+      margin-top -75px !important
+    .user-block
+      margin-top 1.5em
+      margin-bottom 0
+      .user-avatar
+        width 55px
+        height @width
+      .user-text
+        font-size 1.03em
+      .button-component
+        font-size .9em
+        padding .5em 1em
+        margin-top .8em
+    .content-block
+      border-bottom none
+      margin-bottom 8em
+      p
+        font-size 1.03em
+    .share-component
+      text-align left
+      border-bottom 1px solid #ededed
+      padding-bottom 1em
+      .ct-sc-link
+        width 38px
+        height @width
+        margin 0 .7em 0 0
+    .poll-block
+      font-size 1.16em
+      padding-bottom 1.3em
+      p
+        margin-bottom 1em
+      .buttons
+        margin-bottom 2em
+        a
+          padding .2em
+          width 10em

@@ -1,0 +1,39 @@
+extends layout/layout
+
+block body
+	section.main.support.post
+		.site-container
+			.container
+				.page-title How can agents leverage knowledge to help customers?
+				form.search-form.__left
+					input.query(placeholder='Search')
+				.clear
+				.block-title
+					a(href='#') SUPPORT
+					em >
+					a(href='#') FAQ
+					em >
+					span How can agents leverage knowledge to help customers?
+				.user-block
+					.user-avatar
+					.user-text
+						.user-name Username
+						.user-time 3 month ago
+					a.button-component.__blue(href='#') Follow
+				.content-block
+					each val in [1,2,3,4,5]
+						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolores eligendi ex minus qui, voluptatem? Commodi doloribus dolorum excepturi iure quidem suscipit, tenetur. Alias, eaque eius esse ex possimus ratione?
+				.share-component
+					.ct-sc-link.__fb
+					.ct-sc-link.__twitter
+					.ct-sc-link.__in
+					.ct-sc-link.__google
+				.poll-block
+					p Was this article helpful?
+					.buttons
+						a(href='#') yes
+						a(href='#') no
+					small 10 of 23 found this helpful
+					p
+						span Have more questions?
+						a(href='#') Submit a request

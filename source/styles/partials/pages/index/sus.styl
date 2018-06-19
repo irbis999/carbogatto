@@ -1,0 +1,61 @@
+@import "mixins.styl"
+
+section.main.index
+  .suspension-block
+    background black no-repeat image-url('pages/index/sus-bg.jpg') 50% 40px / 100%
+    container-styles()
+    .block-spacer
+      margin-bottom 2.5em
+    .logos
+      position relative
+      top -2em
+      width 130px
+      margin 0 auto -2em auto
+      display block
+      opacity 0
+    .bike
+      position absolute
+      top 50%
+      right 45%
+      text-transform uppercase
+      color rgba(#c6c6c6, .6)
+      font-size .75em
+      padding 2.5em 0 2.5em 110px
+      border-top 1px solid rgba(#c6c6c6, .3)
+      border-bottom 1px solid rgba(#c6c6c6, .3)
+      box-sizing border-box
+      width 160px
+      .icon
+        position absolute
+        top 3px
+        left 0
+        width 95px
+        height 44px
+        .bike-icon
+          width 100%
+          height 100%
+          opacity .3
+        .shocks
+          position absolute
+          left 39%
+          top 5%
+          width 45%
+          opacity 0
+
+    @media (min-width mup)
+      mup-video-block()
+      .logos
+        width auto
+      .bike
+        border-top-width 2px
+        border-bottom-width 2px
+        top 35%
+        right 52%
+        width 500px
+        font-size 1.21em
+        padding 2.5em 0 2.5em 325px
+        .icon
+          width 284px
+          height 132px
+          left 5px
+          top 10px

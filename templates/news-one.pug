@@ -1,0 +1,30 @@
+extends layout/layout
+
+block body
+	section.main.news
+		//Блока с картинкой
+		article.__yellow
+			//Картинки располагаются в правом нижнем углу
+				ширина для мобайла 640
+				ширина для десктопа - тут на вкус и цвет.
+				Просто нужно помнить, что располагается картинка в правом нижем углу - background no-repeat right bottom
+			.site-container(data-src-mobile='../build/img/pages/news/euro.jpg',
+			data-src-desktop='../build/img/pages/news/euro-d.jpg')
+				time
+					span 15
+					span april
+					span 2018
+				.title see you at the Eurobike 2018 JULY 8 — 10, 2018
+				.desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				.text-center
+					a.button-component.__back(href='#') back
+		//Контент
+		.new-content
+			each val in [1,2,3]
+				p Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto doloremque doloribus dolorum et eveniet ex itaque labore natus nulla odit, optio quasi repellendus sunt vitae? Deserunt magnam officia porro!
+			img(src='http://dreempics.com/uploads/posts/2016-06/1467029644_5.jpg')
+			each val in [1,2,3]
+				p Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto doloremque doloribus dolorum et eveniet ex itaque labore natus nulla odit, optio quasi repellendus sunt vitae? Deserunt magnam officia porro!
+			.button-container
+				a.button-component.__back(href='#') back
+

@@ -1,0 +1,25 @@
+@import "mixins.styl"
+
+section.main.index
+  .create-block
+    container-styles()
+    margin-bottom 4em
+    .title
+      margin-bottom .5em
+    .bike-icon
+      display block
+      margin 0 auto 20px auto
+      width 285px
+      height 133px
+    p
+      margin-bottom 2em
+    .button
+      padding-left 1em
+      padding-right 2em
+
+    @media (min-width mup)
+      margin-bottom 8em
+      .bike-icon
+        width 787px
+        height 366px
+        margin-bottom 5em

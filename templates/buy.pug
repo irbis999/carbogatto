@@ -1,7 +1,7 @@
 extends layout/layout
 
 block body
-	//Пока не используем threejs
+	//Пока не используем threejs - выводим частицы своими стилями/скриптами
 	//script(src='https://threejs.org/build/three.min.js')
 	//script(src='https://threejs.org/examples/js/renderers/Projector.js')
 	//script(src='https://threejs.org/examples/js/renderers/CanvasRenderer.js')
@@ -9,10 +9,18 @@ block body
 	section.main.buy
 		form
 			.top-block
-				each i in ['__1','__2','__3',]
-					.waves(class=i)
-						each val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-							.dot(data-start=val / 20)
+				- dotsArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+				//Частицы перед великом
+				each i in [1,2,3]
+					.waves(class=`__${i}`, data-start=(i / 10))
+						each val in dotsArray
+							.dot
+				//Частицы за великом
+				.waves-back-container
+					each i in [1,2,3]
+						.waves.__back(class=`__${i}`, data-start=(i / 22))
+							each val in dotsArray
+								.dot
 				.site-container
 					.title Create your carbogatto
 					img.bike(src='../build/img/pages/buy/bike.png')
