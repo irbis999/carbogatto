@@ -1,32 +1,34 @@
 .motor-block
-	.site-container
-		.container
-			.title.__absolute Motor
-			.relative-container
-				img.block-spacer(src='../build/img/pages/index/bg-spacer.png')
-				.video-container
-					.top-line
-					video(data-src='../build/img/pages/index/motor.mp4',
-					preload='metadata',
-					muted='muted',
-					data-poster='../build/img/pages/index/motor-poster.jpg')
-					.bottom-line
-				.icons-block.lozad.__motor
-					.icons-line
-					.icons-row
-						include speed-icon.html
-						.icons-title 45/25 km/h
-						.icons-text Speed
-					.icons-line
-					.icons-row
-						svg.icons-icon.__power: +use('power')
-						.icons-title.__pink 2 kW
-						.icons-text Power
-					.icons-line
-					.icons-row.__no-border
-						include features-icon.html
-						.icons-title.__yellow 4 DRIVE MODES
-						.icons-text features
-					a.button(href='#') Support
-			.text-block
-				p Back wheel hub electric motor, brushless. 45 km/h and 25 km/h to be chosen from and are perfect for the city centre. 2 kW. More powerful motors available upon request. 4 drive modes can be selected via the handlebar push-button: Eco / Custom / Sport / Wheely.
+  .site-container
+    .container
+      .title.__absolute Motor
+      .relative-container
+        img.block-spacer(src='../build/img/pages/index/bg-spacer.png')
+        .video-scroll-block
+          .video-container
+            .top-line
+            video(data-src='../build/img/pages/index/motor.mp4',
+            preload='auto',
+            muted='muted',
+            data-poster='../build/img/pages/index/motor-poster.jpg',
+            data-duration=15.04)
+            .bottom-line
+          .icons-block.lozad.__motor
+            .icons-line
+            .icons-row
+              include speed-icon.html
+              .icons-title 45/25 km/h
+              .icons-text Speed
+            .icons-line
+            .icons-row
+              svg.icons-icon.__power: +use('power')
+              .icons-title.__pink 2 kW
+              .icons-text Power
+            .icons-line
+            .icons-row.__no-border
+              include features-icon.html
+              .icons-title.__yellow 4 DRIVE MODES
+              .icons-text features
+            a.button(href='#') Support
+      .text-block
+        p Back wheel hub electric motor, brushless. 45 km/h and 25 km/h to be chosen from and are perfect for the city centre. 2 kW. More powerful motors available upon request. 4 drive modes can be selected via the handlebar push-button: Eco / Custom / Sport / Wheely.

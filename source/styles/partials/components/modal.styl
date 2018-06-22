@@ -1,0 +1,59 @@
+.modal-component
+  position relative
+  z-index 100
+  .ct-mc-bg
+    left 0
+    top 0
+    width 100%
+    height 100%
+    position fixed
+    z-index 100
+    background rgba(black, .7)
+  .ct-mc-content-container
+    position fixed
+    z-index 101
+    width 100%
+    height 100%
+    left 0
+    top 0
+    box-sizing border-box
+    overflow-y auto
+    padding 60px 1em 1em 1em
+    .ct-mc-content
+      background white
+      position relative
+      max-width 500px
+      margin 0 auto
+      padding 1.5em
+      box-sizing border-box
+      @extend .clearfix
+      .ct-mc-close
+        cursor pointer
+        position absolute
+        right 0
+        top -35px
+        width 15px
+        height @width
+        z-index 3
+        padding 8px
+        fill color-blue
+      .ct-mc-title
+        font-size 1.4em
+        text-transform uppercase
+        font-weight bold
+        margin-bottom .6em
+  @media (min-width mup)
+    .ct-mc-content-container
+      padding-top 100px
+      .ct-mc-content
+        width 920px
+        max-width none
+        padding 3em
+        .ct-mc-close
+          width 25px
+          height @width
+          padding 0
+          top -40px
+        .ct-mc-title
+          font-size 1.9em
+          margin-bottom .3em

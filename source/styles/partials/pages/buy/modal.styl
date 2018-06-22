@@ -1,0 +1,135 @@
+.modal-component.__buy
+  .right-text
+    font-size .9em
+    margin-bottom .5em
+  .par
+    margin-bottom 1em
+  .form-group
+    width 70%
+    margin-bottom 1.4em
+    .label
+      color #787878
+    input[type=text], input[type=tel], input[type=email]
+      border 1px solid rgb(188, 188, 188)
+      outline none
+      display block
+      width 100%
+      box-sizing border-box
+      padding .5em .4em
+      &:focus
+        border-color color-blue
+  .subtitle
+    font-size 1.2em
+    font-weight bold
+    text-transform uppercase
+    margin 1.5em 0 .5em 0
+  table
+    border-collapse collapse
+    width 100%
+    margin-bottom 1.5em
+    tr
+      &.__bold
+        font-weight bold
+      td
+        padding .5em 0
+        border-top 1px solid color-blue
+        border-bottom 1px solid color-blue
+        text-align right
+        &:first-of-type
+          text-align left
+          color #787878
+        &:last-of-type
+          width 20px
+          svg
+            cursor pointer
+            fill color-blue
+            width 10px
+            height @width
+            padding 3px 7px
+            position relative
+            right -4px
+  .checkbox
+    position relative
+    @extend .clearfix
+    margin-bottom 1em
+    input
+      position absolute
+      left 0
+      top 0
+      opacity 0
+    em
+      float left
+      border 1px solid #787878
+      width 12px
+      height 12px
+      position relative
+      svg
+        width 10px
+        height 10px
+        position absolute
+        left 1px
+        top 1px
+        display none
+        fill color-blue
+    input:checked + em
+      svg
+        display inline-block
+    span
+      float left
+      margin .1em 0 0 .4em
+  .spacer
+    height 15px
+  .terms
+    margin .8em
+    float right
+    border-bottom 1px solid rgba(color-blue, .3)
+    &:hover
+      text-decoration none
+      border-bottom-color transparent
+  @media (min-width mup)
+    .ct-mc-title
+      float left
+    .right-text
+      float right
+      width 380px
+      font-size .8em
+      text-align right
+    .par
+      clear both
+      margin-bottom 2em
+    .form-group
+      float left
+      width 30%
+      margin-right 5%
+      box-sizing border-box
+      margin-bottom 4em
+      &.__last
+        margin-right 0
+    .subtitle
+      clear both
+    table
+      font-size .8em
+      tr
+        td
+          &:last-of-type
+            width 25px
+            svg
+              right 2px
+              margin-top 3px
+              padding 0
+              width 12px
+              height @width
+    .checkbox
+      position absolute
+      bottom 2.7em
+      left 11em
+      em
+        width 20px
+        height @width
+        svg
+          left 2px
+          top 2px
+          width 16px
+          height @width
+      span
+        margin-left .6em

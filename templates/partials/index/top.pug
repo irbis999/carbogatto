@@ -1,11 +1,16 @@
 .top-block
-	.site-container
-		.container
-			.video-block
-				.bottom-line
-				video(data-src='../build/img/pages/index/top.mp4',
-				preload='metadata',
-				muted='muted',
-				data-poster='../build/img/pages/index/top-poster.jpg')
-			.text-block
-				p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+  .site-container
+    .container
+      //.video-scroll-block - это контейнер, который реагирует на wheel и проигрывает видео внутри себя
+      .video-block.video-scroll-block
+        .bottom-line
+        //В data-duration выводим продолжительность видео
+        //видео грузятся сразу preload='auto', предполагается, что они будут хорошо сжаты
+          иначе придется что-то другое придумывать
+        video(data-src='../build/img/pages/index/top.mp4',
+        preload='auto',
+        muted='muted',
+        data-poster='../build/img/pages/index/top-poster.jpg',
+        data-duration=15.04)
+      .text-block
+        p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
