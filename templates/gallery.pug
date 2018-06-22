@@ -1,44 +1,44 @@
 extends layout/layout
 
 block body
-	.gallery-modal
-		.bg
-		.content
-			.site-container
-				.container.relative
-					svg.close: +use('close')
-					.pager
-					.next
-					.prev
-					.slides
-						//макс ширина картинки 1100
-						.slide: img(src='../build/img/pages/gallery/1.jpg')
-						.slide: img(src='../build/img/pages/gallery/2.jpg')
-						.slide: img(src='../build/img/pages/gallery/3.jpg')
-						.slide: img(src='../build/img/pages/gallery/4.jpg')
-						.slide: img(src='../build/img/pages/gallery/5.jpg')
-						.slide: img(src='../build/img/pages/gallery/6.jpg')
-	section.main.gallery
-		.site-container
-			.items
-				//В блоке __triple ширина картинки 1100
-				.item.__triple
-					img.spacer(src='../build/img/main/spacer1260-520.png',
-					style='background-image: url(../build/img/pages/gallery/1.jpg)')
-				//В обыяном блоке ширина картинки 400
-				.item
-					img.spacer(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/gallery/2.jpg)')
-				.item
-					img.spacer(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/gallery/3.jpg)')
-				.item
-					img.spacer(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/gallery/4.jpg)')
-				//В блоке ширина картинки 800
-				.item.__double
-					img.spacer(src='../build/img/main/spacer840-520.png',
-					style='background-image: url(../build/img/pages/gallery/5.jpg)')
-				.item
-					img.spacer(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/gallery/6.jpg)')
+  .gallery-modal
+    .bg
+    .content
+      .site-container
+        .container.relative
+          svg.close: +use('close')
+          .pager
+          .next
+          .prev
+          .slides
+            //макс ширина картинки 1100
+            .slide: img(src='../build/img/pages/gallery/1.jpg')
+            .slide: img(src='../build/img/pages/gallery/2.jpg')
+            .slide: img(src='../build/img/pages/gallery/3.jpg')
+            .slide: img(src='../build/img/pages/gallery/4.jpg')
+            .slide: img(src='../build/img/pages/gallery/5.jpg')
+            .slide: img(src='../build/img/pages/gallery/6.jpg')
+  section.main.gallery
+    .site-container
+      .items
+        //В блоке __triple ширина картинки 1100
+        .item.__triple
+          img.spacer(src='../build/img/main/spacer1260-520.png',
+          style='background-image: url(../build/img/pages/gallery/1.jpg)')
+        //В обыяном блоке ширина картинки 400
+        .item
+          img.spacer(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/gallery/2.jpg)')
+        .item
+          img.spacer(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/gallery/3.jpg)')
+        .item
+          img.spacer(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/gallery/4.jpg)')
+        //В блоке ширина картинки 800
+        .item.__double
+          img.spacer(src='../build/img/main/spacer840-520.png',
+          style='background-image: url(../build/img/pages/gallery/5.jpg)')
+        .item
+          img.spacer(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/gallery/6.jpg)')

@@ -1,34 +1,34 @@
 extends layout/layout
 
 block body
-	section.main.support
-		.site-container
-			.container
-				.page-title How we can help you?
-				form.search-form
-					input.query(placeholder='Search')
-				.faq-button-container
-					.button-component.__blue FAQ
-				.col
-					.block-title Recent activity
-					.row
-						.num 30
-						.title: a(href='#') Ноw I can buy that bike in USA? Ноw I can buy that bike in USA?
-						.desc Article created 15 minuteas ago
-					.row
-						.num.__grey 0
-						.title: a(href='#') Ноw I can upgrade my battery?
-						.desc Article created 2 days ago
-					each val in [1,2,3]
-						.row
-							.num 235
-							.title: a(href='#') Ноw I can buy that bike in USA?
-							.desc Article created 15 minuteas ago
-				.col.__left
-					.block-title Upgrade
-					each val in [1,2,3,4,5]
-						.row: .title: a(href='#') Ноw I can buy that bike in USA?
-				.col.__right
-					.block-title Repairs
-					each val in [1,2,3,4,5]
-						.row: .title: a(href='#') Ноw I can buy that bike in USA?
+  section.main.support
+    .site-container
+      .container
+        .page-title How we can help you?
+        form.search-form
+          input.query(placeholder='Search')
+        .faq-button-container
+          .button-component.__blue FAQ
+        .col
+          .block-title Recent activity
+          .row
+            .num 30
+            .title: a(href='#') Ноw I can buy that bike in USA? Ноw I can buy that bike in USA?
+            .desc Article created 15 minuteas ago
+          .row
+            .num.__grey 0
+            .title: a(href='#') Ноw I can upgrade my battery?
+            .desc Article created 2 days ago
+          each val in [1,2,3]
+            .row
+              .num 235
+              .title: a(href='#') Ноw I can buy that bike in USA?
+              .desc Article created 15 minuteas ago
+        .col.__left
+          .block-title Upgrade
+          each val in [1,2,3,4,5]
+            .row: .title: a(href='#') Ноw I can buy that bike in USA?
+        .col.__right
+          .block-title Repairs
+          each val in [1,2,3,4,5]
+            .row: .title: a(href='#') Ноw I can buy that bike in USA?
