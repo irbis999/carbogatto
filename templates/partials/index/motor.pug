@@ -7,11 +7,12 @@
         .video-scroll-block
           .video-container
             .top-line
-            video(data-src='../build/img/pages/index/motor.mp4',
-            preload='auto',
+            video(preload='auto',
             muted='muted',
             data-poster='../build/img/pages/index/motor-poster.jpg',
-            data-duration=15.04)
+            data-duration=15)
+              source(data-src='../build/img/pages/index/motor.webm?ver=1',)
+              source(data-src='../build/img/pages/index/motor.mp4?ver=1',)
             .bottom-line
           .icons-block.lozad.__motor
             .icons-line

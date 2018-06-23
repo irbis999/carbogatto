@@ -8,11 +8,12 @@
         .video-scroll-block
           .video-container
             .top-line
-            video(data-src='../build/img/pages/index/sus.mp4',
-            preload='auto',
+            video(preload='auto',
             muted='muted',
             data-poster='../build/img/pages/index/sus-poster.jpg',
-            data-duration=15.04)
+            data-duration=15)
+              source(data-src='../build/img/pages/index/sus.webm?ver=1')
+              source(data-src='../build/img/pages/index/sus.mp4?ver=1')
             .bottom-line
           .bike.lozad.__sus-bike
             .icon
