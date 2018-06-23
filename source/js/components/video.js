@@ -21,9 +21,19 @@ class Video {
     this.videoElems.each((index, elem) => {
       //На всех широких устройствах покажем постер
       $(elem).attr('poster', $(elem).data('poster'))
+      //На широких десктопах покажем само видео
       if (device.desktop()) {
-        //На широких десктопах покажем само видео
-        $(elem).attr('src', $(elem).data('src'))
+        let videoSrc = $(elem).attr('src')
+        //тег video содержит атрибут src
+        if(videoSrc) {
+          $(elem).attr('src', $(elem).data('src'))
+        } else {
+          //Если сам тег video не содержит атрибут src, значит в нем должны быть теги source
+          $(elem).find('source').each((index, sourceElem) => {
+            $(sourceElem).attr('src', $(sourceElem).data('src'))
+          })
+        }
+
       }
     })
     this.inited = true

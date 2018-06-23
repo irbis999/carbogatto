@@ -7,11 +7,12 @@
         .video-scroll-block
           .video-container
             .top-line
-            video(data-src='../build/img/pages/index/stand.mp4',
-            preload='auto',
+            video(preload='auto',
             muted='muted',
             data-poster='../build/img/pages/index/stand-poster.jpg',
-            data-duration=10.048)
+            data-duration=9.8)
+              source(data-src='../build/img/pages/index/stand.webm?ver=1')
+              source(data-src='../build/img/pages/index/stand.mp4?ver=1')
             .bottom-line
           .bike.lozad.__stand
             include stand-bike-icon.html

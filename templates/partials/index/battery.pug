@@ -8,11 +8,12 @@
         .video-scroll-block
           .video-container
             //В data-duration выводим продолжительность видео
-            video(data-src='../build/img/pages/index/battery.mp4',
-            preload='auto',
+            video(preload='auto',
             muted='muted',
             data-poster='../build/img/pages/index/battery-poster.jpg',
-            data-duration=15.04)
+            data-duration=15)
+              source(data-src='../build/img/pages/index/battery.webm?ver=1')
+              source(data-src='../build/img/pages/index/battery.mp4?ver=1')
             .bottom-line
           .icons-block.lozad.__battery
             .icons-line
