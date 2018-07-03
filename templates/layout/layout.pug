@@ -1,7 +1,8 @@
 include ../mixins/svg
 
 doctype html
-html(lang="ru")
+//На главной у html и body нужен класс no-scroll
+html.no-scroll(lang="ru")
   head
     title Carbogatto
     meta(charset='utf-8')
@@ -10,7 +11,7 @@ html(lang="ru")
     //https://youtu.be/kxxFQZx3KOk?t=6m30s - принцип подключения ассетов с длинным кешированием
     link(rel='stylesheet' href='../build/styles/app.css')
     script(src='../build/js/app.js')
-  body(data-sprite-path='../build/styles/svg-sprite.svg',
+  body.no-scroll(data-sprite-path='../build/styles/svg-sprite.svg',
   data-mup='1150')
     include nav
     block body

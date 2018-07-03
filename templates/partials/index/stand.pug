@@ -1,4 +1,4 @@
-.stand-block
+.stand-block.vh-slide
   .site-container
     .container
       .title.__absolute Stand
@@ -10,9 +10,8 @@
             video(preload='auto',
             muted='muted',
             data-poster='../build/img/pages/index/stand-poster.jpg',
-            data-duration=9.8)
-              source(data-src='../build/img/pages/index/stand.webm?ver=1')
-              source(data-src='../build/img/pages/index/stand.mp4?ver=1')
+            data-duration=9.8,
+            data-src='../build/img/pages/index/stand')
             .bottom-line
           .bike.lozad.__stand
             include stand-bike-icon.html

@@ -1,13 +1,20 @@
+//На десктопе у нас анимация по скролу
+//этот класс ставится body и html
+@media (min-width mup)
+  .no-scroll
+    overflow hidden
+    height 100vh
+
 section.main.index
   color white
-  border-bottom 1px solid transparent
+  border-bottom 1px solid black
   box-sizing border-box
   //Не получается ставить черный бек всей секции
   //есть блок frame который содержит видео с z-index -1
   .bg-block
     background black
     //Без отступа иногда торчит белый фон снизу
-    margin-bottom -1px
+    //margin-bottom -1px
     @extend .clearfix
   p
     font-weight 300
@@ -135,6 +142,7 @@ section.main.index
       background-color rgba(white, .15)
 
   @media (min-width mup)
+    overflow hidden
     .block-spacer
       display none
     .relative-container
@@ -142,6 +150,7 @@ section.main.index
     .video-container
       display block
       position relative
+      //border 1px solid green
       @extend .clearfix
       .top-line, .bottom-line
         position absolute
@@ -164,7 +173,9 @@ section.main.index
         backface-visibility hidden
         z-index -1
     .text-block
-      padding-top 1em
+      //Без рамки глюки - какой-то отсутп сверху возникает
+      border 1px solid transparent
+      padding-top 0
       margin-left 0
       margin-right 0
     .button
@@ -174,9 +185,10 @@ section.main.index
       padding .5em 3em
       border-width 1.5px
     p
+      margin-top .5em
       opacity .9
       font-size 1.16em
-      width 820px
+      width 1080px
       margin-left auto
       margin-right auto
     .title
