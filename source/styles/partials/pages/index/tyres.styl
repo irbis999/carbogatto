@@ -2,8 +2,8 @@
 
 section.main.index
   .tyres-block
-    background no-repeat image-url('pages/index/tyres-bg.jpg') 50% 40px / 160px
-    margin-bottom 4em
+    background black no-repeat image-url('pages/index/tyres-bg.jpg') 50% 40px / 160px
+    padding-bottom 4em
     container-styles()
     .logos
       width 225px
@@ -14,7 +14,9 @@ section.main.index
       margin-bottom 140px
 
     @media (min-width mup)
-      block-base(50% 100px)
+      background-size auto
+      background-position 50% 100px
+      padding-bottom 5em
       .logos
         width auto
       .title

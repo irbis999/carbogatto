@@ -30,6 +30,7 @@
     "gulp-svgstore": "^6.1.1",
     "intersection-observer": "^0.5.0",
     "jquery": "^2.2.4",
+    "jquery.scrollto": "^2.1.2",
     "lodash": "^4.17.5",
     "lodash.debounce": "^4.0.8",
     "lozad": "^1.4.0",
