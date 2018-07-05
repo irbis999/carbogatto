@@ -1,11 +1,14 @@
 .modal-component.__buy
   .right-text
+    float right
+    width 130px
+    text-align right
     font-size .9em
     margin-bottom .5em
   .par
     margin-bottom 1em
   .form-group
-    width 70%
+    width 100%
     margin-bottom 1.4em
     .label
       color #787878
@@ -16,13 +19,11 @@
       width 100%
       box-sizing border-box
       padding .5em .4em
+      box-shadow none
+      border-radius 0
+      appearance none
       &:focus
         border-color color-blue
-  .subtitle
-    font-size 1.2em
-    font-weight bold
-    text-transform uppercase
-    margin 1.5em 0 .5em 0
   table
     border-collapse collapse
     width 100%
@@ -30,24 +31,53 @@
     tr
       &.__bold
         font-weight bold
+      &.__title
+        td
+          padding-bottom .4em
+          border none
+          font-size 1.1em
+          &:first-of-type
+            text-transform uppercase
+            font-weight bold
+            color black
       td
-        padding .5em 0
+        padding .6rem 0
         border-top 1px solid color-blue
         border-bottom 1px solid color-blue
         text-align right
+        font-size .7rem
+        @extend .clearfix
         &:first-of-type
           text-align left
           color #787878
         &:last-of-type
-          width 20px
-          svg
-            cursor pointer
-            fill color-blue
-            width 10px
-            height @width
-            padding 3px 7px
-            position relative
-            right -4px
+          width 70px
+        &.__quantity
+          text-align center
+          font-size .7rem
+          width 40px
+          padding 0
+          select
+            outline none
+            border none
+            background transparent
+            width 4em
+            border-radius 0
+            color black
+            background image-url('main/select-bg.png') no-repeat 100% 0 / 7px
+            padding .7em 0 .7em 1em
+            appearance none
+            box-sizing border-box
+        .price
+          float right
+          margin-top .4em
+        svg
+          float right
+          cursor pointer
+          fill color-blue
+          width 7px
+          height @width
+          padding 3px 0 3px 7px
   .checkbox
     position relative
     @extend .clearfix

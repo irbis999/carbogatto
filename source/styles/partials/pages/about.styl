@@ -19,6 +19,8 @@ section.main.about
     .content
       position relative
       z-index 2
+      .cols
+        font-size 1.33em
     .combs
       transform rotate(-15deg)
       position absolute
@@ -105,13 +107,13 @@ section.main.about
           background image-url('main/hex-bg.svg') no-repeat top center / cover
       span
         text-transform uppercase
-        font-size 1.1em
+        font-size 1.44em
         display block
       small
-        font-size .86em
+        font-size 1.14em
         display block
       p
-        font-size .86em
+        font-size 1.14em
         margin-top .3em
   .partners-block
     color white
@@ -141,12 +143,14 @@ section.main.about
         height 200px
         combs-styles(75px)
       padding-bottom 20em
-      .cols
-        column-count 2
-        column-gap 2em
-        p
-          margin-top 0
-          margin-bottom 1.5em
+      .content
+        .cols
+          column-count 2
+          column-gap 2em
+          font-size 1em
+          p
+            margin-top 0
+            margin-bottom 1.5em
     .gallery-block
       margin-top -19em
       .gallery

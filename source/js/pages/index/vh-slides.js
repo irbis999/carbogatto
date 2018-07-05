@@ -10,7 +10,6 @@ class Slides {
       return
     }
 
-
     this.elem = options.elem
     this.busy = false
     this.mup = $('body').data('mup')
@@ -30,39 +29,125 @@ class Slides {
 
   init() {
     //Отматываем страницу наверх и ставим первый слайд и первое видео
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     this.currentSlideElem = this.elem.find('.vh-slide').first()
     this.setCurrentVideo()
 
-    //Управление скролом
-    $(document).on('wheel', (e) => {
-      e.preventDefault()
-      if (this.busy) return
-
-      let delta = e.originalEvent.deltaY
-      if (delta === 0) return
-      let direction = 'next'
-      if (delta < 0) {
-        direction = 'prev'
+    //Блокируем управление скролом с помощью клавиш
+    $(document).on('keydown', (e) => {
+      if ([32, 38, 40].indexOf(e.keyCode) !== -1) {
+        e.preventDefault()
       }
+    })
 
-      //Если внутри элемента есть не просмотренное видео и мы скролим внуз
-      //то смотрим видео
-      if (direction === 'next' &&
-        this.currentVideoElem.length &&
-        !this.currentVideoElem.data('played')) {
-        this.playVideo(delta)
+    //Управление скролом - на маке свое, на винде/линуксе - свое
+    //TODO убрать демо винды в боевом режиме
+    if(device.macos() && location.href.indexOf('?windows=true') === -1) {
+      $(document).on('wheel', this.wheelListener.bind(this))
+    } else {
+      $(document).on('wheel', this.fallbackWheelListener.bind(this))
+    }
+  }
+
+  fallbackWheelListener(e) {
+    e.preventDefault()
+    //Если переход в процессе, то ничего не делаем
+    if (this.busy) return
+    //Если видео воспроизводится, то ничего не делаем
+    if (this.currentVideoElem.data('playing')) return
+
+    //Направление скрола
+    let delta = e.originalEvent.deltaY
+    if (delta === 0) return
+    let direction = 'next'
+    if (delta < 0) {
+      direction = 'prev'
+    }
+
+
+    //Если внутри элемента есть не просмотренное видео то смотрим видео
+    //и мы скролим вниз
+    if (direction === 'next' &&
+      this.currentVideoElem.length &&
+      !this.currentVideoElem.data('played')) {
+      this.fallbackPlayVideo()
+      return
+    }
+
+    //Переходим к следующему слайду
+    this.move(direction)
+  }
+
+  fallbackPlayVideo() {
+    this.currentVideoElem[0].play()
+    this.currentVideoElem.data('playing', true)
+    this.currentVideoElem.on('ended', () => {
+      this.currentVideoElem.data('played', true)
+      this.currentVideoElem.data('playing', false)
+    })
+  }
+
+  wheelListener(e) {
+    e.preventDefault()
+    if (this.busy) return
+
+    //Направление скрола
+    let delta = e.originalEvent.deltaY
+    if (delta === 0) return
+    let direction = 'next'
+    if (delta < 0) {
+      direction = 'prev'
+    }
+
+    //Если внутри элемента есть видео
+    if (this.currentVideoElem.length) {
+      this.playVideo(delta)
+
+      //Если видео на середине
+      if(this.currentVideoElem.data('playing')) {
         return
       }
 
-      //Переходим к следующему слайду
-      this.move(direction)
-    })
+      //Если видео на старте и мы крутим вниз
+      if(this.currentVideoElem[0].currentTime <= 0
+        && direction === 'next') {
+        return
+      }
 
-    //Блокируем управление скролом с помощью клавиш
-    $(document).on('keydown', (e) => {
-      if([32,38,40].indexOf(e.keyCode) !== -1) {
-        e.preventDefault()
+      //Если видео в конце и мы крутим вверх
+      if(this.currentVideoElem[0].currentTime >= this.currentVideoElem.data('duration')
+        && direction === 'prev') {
+        return
+      }
+    }
+
+    //Переходим к следующему слайду
+    this.move(direction)
+  }
+
+  playVideo(delta) {
+    requestAnimationFrame(() => {
+      let currentTime = this.currentVideoElem[0].currentTime
+      let duration = this.currentVideoElem.data('duration')
+      let time = currentTime + delta / 2000
+
+      if(time > 0 && time < duration) {
+        //Смотрим видео
+        this.currentVideoElem[0].currentTime = time
+        if(!this.currentVideoElem.data('playing')) {
+          this.currentVideoElem.data('playing', true)
+        }
+      }
+      else if(time <= 0) {
+        //Просмотрели до начала (в обратном порядке)
+        time = 0
+        this.currentVideoElem[0].currentTime = time
+        this.currentVideoElem.data('playing', false)
+      } else {
+        //Просмотрели до конца
+        time = duration
+        this.currentVideoElem[0].currentTime = time
+        this.currentVideoElem.data('playing', false)
       }
     })
   }
@@ -83,19 +168,6 @@ class Slides {
     this.currentVideoElem.attr('src', `${this.currentVideoElem.data('src')}${ext}`)
     this.currentVideoElem.attr('preload', 'auto')
     this.currentVideoElem.data('inited', true)
-  }
-
-  playVideo(delta) {
-    requestAnimationFrame(() => {
-      let currentTime = this.currentVideoElem[0].currentTime
-      if (currentTime >= this.currentVideoElem.data('duration')) {
-        //Если все видео проиграли, то все, заканчиваем
-        this.currentVideoElem.data('played', true)
-        return
-      }
-      this.currentVideoElem[0].currentTime += delta / 2000
-
-    })
   }
 
   move(direction = 'next') {
@@ -124,7 +196,7 @@ class Slides {
     if (!nextSlide.length) return
 
     this.busy = true
-    $(window).scrollTo(nextSlide, 700, {
+    $(window).scrollTo(nextSlide, 1100, {
       offset,
       onAfter: () => {
         this.currentSlideElem = nextSlide
@@ -148,7 +220,6 @@ $(document).ready(() => {
 function supportsVideoType(type) {
   let video
 
-  // Allow user to create shortcuts, i.e. just "webm"
   let formats = {
     ogg: 'video/ogg; codecs="theora"',
     h264: 'video/mp4; codecs="avc1.42E01E"',
