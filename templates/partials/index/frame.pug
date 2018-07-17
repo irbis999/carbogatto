@@ -3,21 +3,21 @@
     .container
       .title.__absolute Frame
       .relative-container
-        img.block-spacer.__no-padding(src='../build/img/pages/index/bg-spacer.png')
-        //.video-scroll-block - это контейнер, который реагирует на wheel и проигрывает видео внутри себя
-        .video-scroll-block
-          .video-container
-            .top-line
-            //В data-duration выводим продолжительность видео
-            video(preload='auto',
-            muted='muted',
-            data-poster='../build/img/pages/index/frame-poster.jpg',
-            data-duration=4.95,
-            data-src='../build/img/pages/index/frame')
-            .bottom-line
-          .carbon.lozad.__frame
-            .line
-            .text CARBON MADE FRAME WITH LIGHT WEIGHT
-            .line
+        .video-container
+          .top-line
+          .preloader
+          //В data-duration выводим продолжительность видео на 1 десятую меньше чем на самом деле
+            все уже выведено правильно, трогать не нужно
+          video(preload='auto',
+          muted='muted',
+          playsinline,
+          poster='../build/img/pages/index/frame-poster.jpg?ver=5',
+          data-duration=4.9,
+          data-src='../build/img/pages/index/frame')
+          .bottom-line
+        .carbon.lozad.__frame
+          .line
+          .text CARBON MADE FRAME WITH LIGHT WEIGHT
+          .line
       .text-block
         p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.

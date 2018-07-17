@@ -1,2 +1,2 @@
 import '@/pages/buy/constructor'
-//import '@/pages/buy/waves'
+import '@/pages/buy/waves'

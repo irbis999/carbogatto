@@ -1,95 +1,103 @@
 extends layout/layout
 
 block body
-	//Для каждой позиции выводится такой блок - модальное окно
-	.accessories-modal.__modal-1
-		.bg
-		.content
-			.site-container
-				.container.relative
-					svg.close: +use('close')
-					.gallery-block
-						.pager
-						.next
-						.prev
-						.slides
-							//Ширина у картинки 920
-							.slide:  img(src='../build/img/pages/acc/seat.jpg')
-							.slide:  img(src='http://corporationart.ru/uploads/misc/14605377050649.jpg')
-							.slide:  img(src='http://discoverart.ru/ckfinder/userfiles/images/7889060-R3L8T8D-1000-5.jpg')
-					.text-block
-						.text-top
-							.left-col
-								.title Mega Seat
-								p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							.right-col
-								a.button-component.__blue(href='#') BUY FOR 500 €
-						.text-bottom
-							.left-col
-								p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
-								p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
-							.right-col
-								.table-title Tech Specs
-								table(cellspacing=0, cellpadding=0)
-									tr
-										td Size
-										td 32x12 cm
-									tr
-										td Weight
-										td 200 g
-									tr
-										td Materials
-										td Natural Leather
+  include partials/order_modal
+  //Для каждой позиции(каждого аксессуара) выводится такой блок - модальное окно
+  each val in [1,2]
+    .accessories-modal(class=`__modal-${val}`)
+      .bg
+      .content
+        .site-container
+          .container.relative
+            svg.close: +use('close')
+            .gallery-block
+              .pager
+              .next
+              .prev
+              .slides
+                //Ширина у картинки 920
+                .slide:  img(src='../build/img/pages/acc/seat.jpg')
+                .slide:  img(src='http://corporationart.ru/uploads/misc/14605377050649.jpg')
+                .slide:  img(src='http://discoverart.ru/ckfinder/userfiles/images/7889060-R3L8T8D-1000-5.jpg')
+            .text-block
+              .text-top
+                .left-col
+                  .title Mega Seat
+                  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                .right-col
+                  //data-id - идентификатор аксессуара в БД
+                    data-name - название аксессуара
+                    data-price - цена аксессуара (целое число)
+                    после нажатия на эту кнопку аксессуар кладется в корзину (корзина написана на js, т.к. в ней много интерактива)
+                  .button-component.__cart-button.__blue(data-id=val,
+                  data-name='Grips',
+                  data-price=(500 * val)) BUY FOR 500 €
+              .text-bottom
+                .left-col
+                  p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+                  p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+                .right-col
+                  .table-title Tech Specs
+                  table(cellspacing=0, cellpadding=0)
+                    tr
+                      td Size
+                      td 32x12 cm
+                    tr
+                      td Weight
+                      td 200 g
+                    tr
+                      td Materials
+                      td Natural Leather
 
-	section.main.accessories
-		.site-container
-			.items
-				//Связь позиции с модальным окном посредством атрибута data-modal
-				.item.modal-trigger(data-modal='.accessories-modal.__modal-1')
-					//Ширина мобильной картинки 600, десктопной 400. Картинка располагается в левом нижем углу
-						и растягивается на всю поверхность блока background bottom left / cover
-					img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
-					style='background-image: url(../build/img/pages/acc/grips.jpg)')
-					img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/acc/grips-d.jpg)')
-					.content
-						.title Super Grips
-						.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						a.button-component.__blue(href='#') Buy for 100 €
-				.item
-					img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
-					style='background-image: url(../build/img/pages/acc/speedometer.jpg)')
-					img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/acc/speedometer-d.jpg)')
-					.content
-						.title Speedometer
-						.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						a.button-component.__blue(href='#') Buy for 100 €
-				.item
-					img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
-					style='background-image: url(../build/img/pages/acc/compass.jpg)')
-					img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/acc/compass-d.jpg)')
-					.content
-						.title Analog Compass
-						.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						a.button-component.__blue(href='#') Buy for 100 €
-				.item.__double
-					img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
-					style='background-image: url(../build/img/pages/acc/seat.jpg)')
-					img.spacer.__desktop(src='../build/img/main/spacer840-520.png',
-					style='background-image: url(../build/img/pages/acc/seat-d.jpg)')
-					.content
-						.title Mega seat
-						.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-						a.button-component.__blue(href='#') Buy for 100 €
-				.item
-					img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
-					style='background-image: url(../build/img/pages/acc/gear.jpg)')
-					img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
-					style='background-image: url(../build/img/pages/acc/gear-d.jpg)')
-					.content
-						.title Gear
-						.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-						a.button-component.__blue(href='#') Buy for 100 €
+  section.main.accessories
+    .site-container
+      .items
+        //Связь позиции с модальным окном (.accessories-modal) посредством атрибута data-modal
+        .item.modal-trigger(data-modal='.accessories-modal.__modal-1')
+          //Ширина мобильной картинки 600, десктопной 400. Картинка располагается в левом нижем углу
+            и растягивается на всю поверхность блока background bottom left / cover
+          img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
+          style='background-image: url(../build/img/pages/acc/grips.jpg)')
+          img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/acc/grips-d.jpg)')
+          .content
+            .title Super Grips
+            .description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            .button-component.__blue Buy for 100 €
+        .item.modal-trigger(data-modal='.accessories-modal.__modal-2')
+          img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
+          style='background-image: url(../build/img/pages/acc/speedometer.jpg)')
+          img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/acc/speedometer-d.jpg)')
+          .content
+            .title Speedometer
+            .description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            .button-component.__blue Buy for 100 €
+        .item
+          img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
+          style='background-image: url(../build/img/pages/acc/compass.jpg)')
+          img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/acc/compass-d.jpg)')
+          .content
+            .title Analog Compass
+            .description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            .button-component.__blue Buy for 100 €
+        .item.__double
+          img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
+          style='background-image: url(../build/img/pages/acc/seat.jpg)')
+          img.spacer.__desktop(src='../build/img/main/spacer840-520.png',
+          style='background-image: url(../build/img/pages/acc/seat-d.jpg)')
+          .content
+            .title Mega seat
+            .description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+            .button-component.__blue Buy for 100 €
+        .item
+          img.spacer.__mobile(src='../build/img/main/spacer320-250.png',
+          style='background-image: url(../build/img/pages/acc/gear.jpg)')
+          img.spacer.__desktop(src='../build/img/main/spacer420-520.png',
+          style='background-image: url(../build/img/pages/acc/gear-d.jpg)')
+          .content
+            .title Gear
+            .description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            .button-component.__blue Buy for 100 €
 

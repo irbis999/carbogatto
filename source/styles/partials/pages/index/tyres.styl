@@ -2,16 +2,22 @@
 
 section.main.index
   .tyres-block
-    background black no-repeat image-url('pages/index/tyres-bg.jpg') 50% 40px / 160px
-    padding-bottom 4em
+    background black no-repeat image-url('pages/index/tyres-bg.jpg') 50% 80px / 160px
     container-styles()
+    slide()
+    .title
+      margin-bottom 230px
     .logos
-      width 225px
-      margin 0 auto 2em auto
+      width 77px
+      height 80px
+      background image-url('pages/index/tyres-logos-mob.png') no-repeat top center / contain
       display block
       opacity 0
-    .title
-      margin-bottom 140px
+      float right
+    p
+      float left
+      width calc(100% - 90px)
+      margin 0
 
     @media (min-width mup)
       background-size auto
@@ -19,6 +25,28 @@ section.main.index
       padding-bottom 5em
       margin-bottom -1px
       .logos
-        width auto
+        width 450px
+        height 33px
+        margin 0 auto 2em auto
+        background-image image-url('pages/index/tyres-logos.png')
+        float none
+      p
+        float none
+        margin-left auto
+        margin-right auto
       .title
-        margin-bottom 300px
+        margin-bottom 340px
+      @media (max-aspect-ratio index-small)
+        background-position-y 150px
+        .title
+          margin-bottom 400px
+        .logos
+          margin-bottom 4em
+      @media (max-aspect-ratio medium-small)
+        background-position-y 170px
+        .title
+          margin-bottom 430px
+        .logos
+          margin-bottom 5em
+      @media (max-aspect-ratio index-large)
+        height initial

@@ -9,9 +9,42 @@ block-base(pos = top center)
   background-size auto
   background-position pos
 
+slide()
+  position relative
+  min-height 100vh
+  box-sizing border-box
+  overflow hidden
+
 mup-video-block()
-  background none
+  position relative
+  height 100vh
+  min-height auto
+  box-sizing border-box
+  overflow hidden
+  margin-bottom 3.5em
   .site-container
     max-width none
   .container
     width auto
+    position static
+  .video-container
+    margin-top -10%
+  .text-block
+    position absolute
+    left 0
+    bottom 0
+    width 100%
+    padding-bottom 0
+  @media (max-aspect-ratio index-small)
+    .video-container
+      margin-top -5%
+  @media (max-aspect-ratio index-medium)
+    .video-container
+      margin-top 0
+    .text-block
+      padding-bottom 1.5em
+  @media (max-aspect-ratio index-large)
+    height initial
+    .text-block
+      position static
+

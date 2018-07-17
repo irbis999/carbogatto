@@ -2,14 +2,13 @@
 
 section.main.index
   .motor-block
-    background black no-repeat image-url('pages/index/motor-bg.jpg') 50% 30px / 100%
     container-styles()
+    slide()
     .icons-block
-      right 72%
-      top 50%
-      padding-bottom 3px
+      z-index 2
+      padding-bottom .5em
     .text-block
-      padding-top 2em
+      margin-right 10em
     .button
       margin-top .5em
       padding-left 1.8em
@@ -18,7 +17,8 @@ section.main.index
       mup-video-block()
       .icons-block
         right 75%
-        top 43%
+        top auto
+        bottom 6.5em
         .icons-title
           margin-left 65px
         .icons-text
@@ -29,3 +29,10 @@ section.main.index
         padding-right 3.5em
       .text-block
         padding-top 0
+      @media (max-aspect-ratio index-small)
+        .icons-block
+          bottom 2em
+      @media (max-aspect-ratio index-medium)
+        .icons-block
+          bottom 1em
+

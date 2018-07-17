@@ -1,18 +1,18 @@
 import _debounce from 'lodash.debounce'
+import AccCart from '@/components/cart/acc'
 
 class ModalTrigger {
   constructor(options) {
     this.elem = options.elem
     this.modalElem = $(this.elem.data('modal'))
-
-    this.elem.click(event => {
-      if ($(event.target).closest('a').length) return
-      this.showModal()
-    })
+    this.elem.click(this.showModal.bind(this))
   }
 
   showModal() {
-    this.modalElem.fadeIn()
+    this.modalElem
+      .removeClass('__bg-transparent')
+      .fadeIn()
+    //Для пересетапа галереи
     setTimeout(() => {
       this.modalElem.trigger('mc:show')
     }, 100)
@@ -22,6 +22,8 @@ class ModalTrigger {
 class Modal {
   constructor(options) {
     this.elem = options.elem
+    this.orderModalElem = $('.modal-component.__order')
+    this.cartButtonElem = this.elem.find('.button-component.__cart-button')
     this.carouselElem = this.elem.find('.slides')
     this.carouselElem.slick({
       arrow: true,
@@ -34,17 +36,42 @@ class Modal {
       adaptiveHeight: true
     })
 
-    this.elem.click(event => {
-      if ($(event.target).closest('.close').length) {
-        this.hideModal()
+    this.elem.click(e => {
+      if ($(e.target).closest('.close').length &&
+      this.elem[0].contains(e.target)) {
+        this.hideModalRegular()
       }
+    })
+
+    this.cartButtonElem.click(e => {
+      AccCart.addAcc({
+        id: this.cartButtonElem.data('id'),
+        name: this.cartButtonElem.data('name'),
+        num: 1,
+        price: this.cartButtonElem.data('price'),
+      })
+
+      this.orderModalElem.trigger('mc:acc_update')
+      this.showOrderModal()
     })
 
     this.elem.on('mc:show', this.setPosition.bind(this))
     $(window).on('resize', _debounce(this.setPosition.bind(this), 200))
   }
 
+  showOrderModal() {
+    this.hideModal()
+    this.orderModalElem.trigger('mc:show')
+  }
+
   hideModal() {
+    this.elem.addClass('__bg-transparent')
+    setTimeout(() => {
+      this.elem.fadeOut('fast')
+    }, 800)
+  }
+
+  hideModalRegular() {
     this.elem.fadeOut()
   }
 

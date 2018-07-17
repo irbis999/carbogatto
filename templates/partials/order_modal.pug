@@ -1,0 +1,59 @@
+include ../mixins/svg
+
+.modal-component.__order
+  .ct-mc-bg
+  .ct-mc-content-container
+    //Форма будет отправлена аяксом после как пользвоатель закончит процедуру заполнения полей заказа
+      в форму будут добавлены дополнительные поля для каждого аксессуара и байка, который пользователь положил
+      в корзину. Корзина полностью работает на js. Корзина хранится в куках
+      как все устроено можно посмотреть на видео
+      https://monosnap.com/file/eyJUg8tCq7d7dbxlPEBp748ZVKmvVg
+      и можно просто положить пару аксессуров в корзину, собрать пару байков и отправить форму, а в консоли посмотреть
+      как именно были отправлены данные
+    form.ct-mc-content(id='order-form')
+      svg.ct-mc-close: +use('close')
+      //Перечень товаров
+      .order-content
+        .right-text
+          | Your shopping list will be <b>saved</b>. You can use it when you ordering from the Accessory and Create & Buy page.
+        .ct-mc-title Checkout
+        .par Enter your details to send an invoice
+        .clear
+        .form-group
+          .label Name
+          input(type='text', required)
+        .form-group
+          .label Phone
+          input(type='tel', required)
+        .form-group.__last
+          .label Email
+          input(type='email', required)
+        //Все таблицы заполняются динамически - js
+        //Байки
+          data-bike-base-price - это базовая цена самого байка, без агрегатов, цена самой основы
+        table.__bikes-table(data-bike-base-price='80000')
+          tr.__title
+            td Bike & customization
+            td.__quantity Quantity
+            td.__bikes-total
+        //Аксессуары
+        table.__acc-table
+          tr.__title
+            td Accessories
+            td.__quantity Quantity
+            td.__acc-total
+        //Итого
+        table
+          tr.__title.__total
+            td Total
+            td.__total-price
+        button.button-component.__blue Send
+        label.checkbox
+          input(type='checkbox', required=true)
+          em: svg: +use('check')
+          span Agree to the processing of personal data
+        .terms: a(href='#') Terms of use
+      //После заказа (когда форма будет отправлена аяксом)
+      .after-order-content
+        .ct-mc-title Checkout
+        p Thank you for placing your order. We sent you email to pay for the purchase.

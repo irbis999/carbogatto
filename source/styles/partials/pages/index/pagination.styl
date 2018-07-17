@@ -1,0 +1,25 @@
+section.main
+  .pagination
+    display none
+html.desktop
+  section.main
+    .pagination
+      @media (min-width mup)
+        display block
+        position fixed
+        z-index 4
+        left 20px
+        top 50%
+        width 15px
+        margin-top -130px
+        svg
+          display inline-block
+          fill white
+          width 12px
+          height @width
+          margin-bottom 4px
+          opacity .25
+          cursor pointer
+          &.__active
+            fill color-blue
+            opacity 1

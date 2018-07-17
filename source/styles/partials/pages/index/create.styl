@@ -2,26 +2,44 @@
 
 section.main.index
   .create-block
-    background black
     container-styles()
-    padding-bottom 4em
-    margin-bottom -1px
+    slide()
     .title
-      margin-bottom .5em
+      margin-bottom 2em
     .bike-icon
       display block
-      margin 0 auto 20px auto
+      margin 0 auto 3em auto
       width 285px
       height 133px
     p
-      margin-bottom 2em
+      margin 0 auto 2em auto
+      width 17.5em
     .button
-      padding-left 1em
-      padding-right 2em
+      padding-left 4em
+      padding-right 4em
 
     @media (min-width mup)
-      padding-bottom 8em
+      margin-bottom 8em
+      .title
+        margin-bottom 0
       .bike-icon
         width 787px
         height 366px
-        margin-bottom 5em
+        margin-bottom .7em
+      p
+        width auto
+        margin-bottom .5em
+      @media (max-aspect-ratio index-small)
+        .title
+          margin-bottom .5em
+        .bike-icon
+          margin-bottom 5em
+        p
+          margin-bottom 2em
+      @media (max-aspect-ratio index-medium)
+        .title
+          margin-bottom 1.5em
+        p
+          margin-bottom 4em
+      @media (max-aspect-ratio index-large)
+        height initial

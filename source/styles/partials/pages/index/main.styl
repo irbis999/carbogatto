@@ -1,25 +1,24 @@
 //На десктопе у нас анимация по скролу
 //этот класс ставится body и html
-@media (min-width mup)
-  .no-scroll
-    overflow hidden
-    height 100vh
+.no-scroll
+  overflow hidden
+  height 100vh
+  box-sizing border-box
+
+//На десктопах нет прелоадера
+html.desktop
+  section.main.index
+    .preloader
+      display none !important
 
 section.main.index
   color white
-  border-bottom 1px solid black
   box-sizing border-box
   background black
-  //Не получается ставить черный бек всей секции
-  //есть блок frame который содержит видео с z-index -1
-  .bg-block
-    background black
-    //Без отступа иногда торчит белый фон снизу
-    //margin-bottom -1px
-    @extend .clearfix
+  //Без рамки снизу глюк - белая полоса
+  border-bottom 1px solid black
   p
     font-weight 300
-    text-align center
     font-size 1.33em
   .title
     font-size 2.04em
@@ -32,36 +31,63 @@ section.main.index
       top 0
       width 100%
       left 0
-      z-index 2
-      //Блоку нельзя ставить фон - сзади на десктопе видео с z-index -1
-      //видосам приходится ставить z-index: -1 потому что иначе возникают глюки с градиентами, которые располагаются
-      //сверху и снизу видео - небольшие черные полосы
-      background black
-  .video-container
-    display none
+      z-index 3
   .relative-container
     position relative
     @extend .clearfix
-  .block-spacer
-    max-width none
-    width calc(100% + 30px)
-    float left
-    box-sizing border-box
+  .video-container
     margin-left -(container-padding)
-    padding-bottom 1.5em
-    margin-bottom 1.2em
-    &.__no-padding
-      padding-bottom 0
+    margin-right @margin-left
+    margin-bottom 2em
+    position relative
+    overflow hidden
+    @extend .clearfix
+    .preloader
+      position absolute
+      left 10px
+      top 100%
+      margin -40px 0 0 0
+      background image-url('pages/index/play.png') no-repeat top center / contain
+      width 25px
+      height @width
+      z-index 3
+      &.__loading
+        background-image image-url('pages/index/preloader.png')
+      &.__play
+        background-image image-url('pages/index/play.png')
+      &.__pause
+        background-image image-url('pages/index/pause.png')
+
+    .top-line, .bottom-line
+      position absolute
+      left 0
+      height 25px
+      width 100%
+      z-index 2
+    .top-line
+      top 2em
+      background linear-gradient(to top, rgba(black, 0), rgba(black, 1))
+    .bottom-line
+      top auto
+      bottom 0
+      background linear-gradient(to bottom, rgba(black, 0), rgba(black, 1))
+    video
+      background black
+      max-width none
+      margin 2.5em 0 0 -20%
+      float left
+      width 140%
+      position relative
+      display block
   .text-block
     clear both
-    background black
     margin-left -(container-padding)
     margin-right @margin-left
     padding 0 container-padding 4em container-padding
   .icons-block
     position absolute
-    right 45px
-    top 60px
+    right 0
+    top calc(100% + 1.7em)
     width 85px
     overflow hidden
     .icons-line
@@ -145,42 +171,32 @@ section.main.index
 
   @media (min-width mup)
     overflow hidden
-    background transparent
-    .block-spacer
-      display none
     .relative-container
       margin-top 1.5em
     .video-container
-      display block
-      position relative
-      //border 1px solid green
-      @extend .clearfix
-      .top-line, .bottom-line
-        position absolute
-        left 0
-        top 0
-        height 25px
-        width 100%
-        background linear-gradient(to top, rgba(black, 0), rgba(black, 1))
-      .bottom-line
-        top auto
-        bottom 0
-        background linear-gradient(to bottom, rgba(black, 0), rgba(black, 1))
+      width initial
+      margin-left initial
+      margin-right @margin-left
+      margin-bottom initial
+      .preloader
+        top 20%
+        left auto
+        right 20px
+        width 50px
+        height @width
+        margin-top 0
       video
-        background black
-        margin 2.5em 0 0 0
-        float left
+        margin-left 0
         width 100%
-        position relative
-        display block
-        backface-visibility hidden
-        z-index -1
+      .top-line
+        top 0
     .text-block
       //Без рамки глюки - какой-то отсутп сверху возникает
       border 1px solid transparent
       padding-top 0
       margin-left 0
       margin-right 0
+      z-index 2
     .button
       font-size 1.19em
       background-size 10px auto
@@ -188,17 +204,21 @@ section.main.index
       padding .5em 3em
       border-width 1.5px
     p
-      margin-top .5em
+      text-align center
+      margin-top 0
       opacity .9
       font-size 1.16em
-      width 1080px
+      max-width 1300px
       margin-left auto
       margin-right auto
+      padding-left 2em
+      padding-right 2em
+      box-sizing border-box
+      text-shadow: 1px 1px 2px black
     .title
       font-size 2.38em
       &.__absolute
         top 0
-        z-index 2
         padding-bottom .8em
         background linear-gradient(to bottom, rgba(black, 1), rgba(black, 1) 1.7em, rgba(black, 0))
     .icons-block
@@ -240,3 +260,11 @@ section.main.index
         .icons-text
           margin-left 95px
           font-size 1.19em
+    @media (max-aspect-ratio index-small)
+      .video-container
+        .preloader
+          top 10%
+    @media (max-aspect-ratio index-medium)
+      .video-container
+        .preloader
+          top 3%

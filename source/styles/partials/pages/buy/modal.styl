@@ -1,12 +1,22 @@
-.modal-component.__buy
+.modal-component.__order
+  z-index 200
+  .ct-mc-content
+    &.__after-order
+      background white image-url('main/order-modal-combs.svg') no-repeat calc(100% + 30px) 0 / 600px
+  .order-content
+    display block
+  .after-order-content
+    display none
   .right-text
     float right
     width 130px
     text-align right
     font-size .9em
-    margin-bottom .5em
+    padding-top 2em
+    background image-url('svg-sprite/warning.svg') no-repeat right top / 15px
   .par
-    margin-bottom 1em
+    margin-bottom 4em
+    font-size .86em
   .form-group
     width 100%
     margin-bottom 1.4em
@@ -29,8 +39,6 @@
     width 100%
     margin-bottom 1.5em
     tr
-      &.__bold
-        font-weight bold
       &.__title
         td
           padding-bottom .4em
@@ -40,6 +48,9 @@
             text-transform uppercase
             font-weight bold
             color black
+        &.__total
+          td
+            border-bottom 1px solid #ccc
       td
         padding .6rem 0
         border-top 1px solid color-blue
@@ -56,7 +67,7 @@
           text-align center
           font-size .7rem
           width 40px
-          padding 0
+          padding .3em 0
           select
             outline none
             border none
@@ -71,17 +82,30 @@
         .price
           float right
           margin-top .4em
-        svg
+        svg.__delete-bike, svg.__delete-acc
           float right
           cursor pointer
           fill color-blue
           width 7px
           height @width
           padding 3px 0 3px 7px
+        svg.selected-color
+          float left
+          width 10px
+          height @width
+          margin -.2em 0 0 .4em
+        .color-name
+          float left
+          //border 1px solid red
+  button
+    float left
+    padding-left 2em
+    padding-right @padding-left
   .checkbox
     position relative
     @extend .clearfix
-    margin-bottom 1em
+    margin.7em 0 0 2em
+    float left
     input
       position absolute
       left 0
@@ -106,27 +130,31 @@
         display inline-block
     span
       float left
-      margin .1em 0 0 .4em
-  .spacer
-    height 15px
+      margin .3em 0 0 .4em
+      font-size .85em
   .terms
-    margin .8em
-    float right
-    border-bottom 1px solid rgba(color-blue, .3)
-    &:hover
-      text-decoration none
-      border-bottom-color transparent
+    clear both
+    padding 1em 0
+    text-align center
+    a
+      border-bottom 1px solid rgba(color-blue, .3)
+      &:hover
+        text-decoration none
+        border-bottom-color transparent
   @media (min-width mup)
-    .ct-mc-title
-      float left
+    .ct-mc-content
+      &.__after-order
+        background-position-x calc(100% + 70px)
+        background-size 1700px
     .right-text
       float right
       width 380px
       font-size .8em
       text-align right
+      background-size 30px
+      padding-top 2.5em
     .par
-      clear both
-      margin-bottom 2em
+      margin-bottom 3em
     .form-group
       float left
       width 30%
@@ -135,24 +163,38 @@
       margin-bottom 4em
       &.__last
         margin-right 0
-    .subtitle
-      clear both
     table
-      font-size .8em
       tr
+        &.__title
+          td
+            font-size 1.2em
+          &.__total
+            td
+              padding-top 2em
         td
+          font-size .8em
+          svg.__delete-bike, svg.__delete-acc
+            right 2px
+            margin-top 3px
+            padding 0
+            width 12px
+            height @width
+          svg.selected-color
+            width 18px
+            height @width
+            margin -.1em 0 0 .5em
           &:last-of-type
-            width 25px
-            svg
-              right 2px
-              margin-top 3px
-              padding 0
-              width 12px
-              height @width
+            width 200px
+          &.__quantity
+            font-size .8em
+            padding 0
+            color #787878
+            select
+              background-size 10px
+              background-position 100% .5em
+          .price
+            margin .2em .8em 0 0
     .checkbox
-      position absolute
-      bottom 2.7em
-      left 11em
       em
         width 20px
         height @width
@@ -163,3 +205,6 @@
           height @width
       span
         margin-left .6em
+    .terms
+      clear none
+      float right
