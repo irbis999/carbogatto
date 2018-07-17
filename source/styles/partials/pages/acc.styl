@@ -2,6 +2,10 @@
   display none
   position relative
   z-index 100
+  &.__bg-transparent
+    //border 5px solid red
+    .bg
+      background transparent
   .bg
     left 0
     top 0
@@ -9,6 +13,7 @@
     height 100%
     position fixed
     z-index 100
+    transition background .8s
     background rgba(black, .7)
   .content
     position fixed

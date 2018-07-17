@@ -2,21 +2,23 @@
 
 section.main.index
   .frame-block
-    background no-repeat image-url('pages/index/frame-bg.jpg') 50% 20px / 100%
     container-styles()
+    slide()
+    .text-block
+      margin-right 12em
     .carbon
       position absolute
-      right 15px
-      top 58%
-      width 110px
-      overflow hidden
+      right 0
+      width 90px
+      top calc(100% + 1.7em)
       .text
         opacity 0
         text-transform uppercase
         color rgba(#c6c6c6, .6)
         font-size .75em
-        padding 2em 0 2em 50px
-        background no-repeat image-url('pages/index/carbon.png') 0 3px / 43px
+        padding 90px 2em 2em 2em
+        text-align center
+        background no-repeat image-url('pages/index/carbon.png') 50% 10px / 70px
         box-sizing border-box
       .line
         border-top 1px solid rgba(#c6c6c6, .3)
@@ -25,11 +27,12 @@ section.main.index
     @media (min-width mup)
       mup-video-block()
       .carbon
-        top 45%
+        top 30%
         right auto
         left 68%
         width 300px
         .text
+          text-align left
           font-size 1.19em
           padding 2.2em 0 2.2em 150px
           background-size 130px
@@ -37,4 +40,7 @@ section.main.index
         .line
           border-top-width 2px
           border-bottom-width 2px
+      @media (max-aspect-ratio index-small)
+        .carbon
+          top 45%
 

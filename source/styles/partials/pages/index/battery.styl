@@ -2,15 +2,18 @@
 
 section.main.index
   .battery-block
-    background black no-repeat image-url('pages/index/battery-bg.jpg') 50% 31px / 100%
     container-styles()
+    slide()
     .text-block
-      padding-top 2em
+      margin-right 10em
     .icons-block
-      right 10%
-      top 30%
+      right 0
     @media (min-width mup)
       mup-video-block()
+      .video-container
+        margin-top 0 !important
+        .preloader
+          top 3% !important
       .icons-block
         right 20%
         top 15%

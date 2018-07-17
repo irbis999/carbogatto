@@ -2,35 +2,40 @@
 
 section.main.index
   .suspension-block
-    background black no-repeat image-url('pages/index/sus-bg.jpg') 50% 40px / 100%
     container-styles()
-    .block-spacer
-      margin-bottom 2.5em
+    slide()
     .logos
-      position relative
-      top -2em
-      width 130px
-      margin 0 auto -2em auto
+      position absolute
+      top 130px
+      right 10px
+      width 110px
+      height 65px
       display block
       opacity 0
+      z-index 2
+      background image-url('pages/index/sus-logos-mob.png') no-repeat top center / contain
+    .text-block
+      padding-right 15em
+      position relative
     .bike
       position absolute
-      top 50%
-      right 45%
+      top calc(100% + 2em)
+      right 0
+      width 110px
       text-transform uppercase
       color rgba(#c6c6c6, .6)
       font-size .75em
-      padding 2.5em 0 2.5em 110px
+      padding 80px 2em 2.5em 2em
+      text-align center
       border-top 1px solid rgba(#c6c6c6, .3)
       border-bottom 1px solid rgba(#c6c6c6, .3)
       box-sizing border-box
-      width 160px
       .icon
         position absolute
-        top 3px
-        left 0
-        width 95px
-        height 44px
+        top 10px
+        left -10px
+        width 130px
+        height 64px
         .bike-icon
           width 100%
           height 100%
@@ -45,17 +50,25 @@ section.main.index
     @media (min-width mup)
       mup-video-block()
       .logos
-        width auto
+        position static
+        width 383px
+        height 93px
+        background-image image-url('pages/index/sus-logos.png')
+        margin 0 auto
       .bike
         border-top-width 2px
         border-bottom-width 2px
-        top 35%
-        right 52%
+        top 20%
+        right 55%
         width 500px
         font-size 1.21em
         padding 2.5em 0 2.5em 325px
+        text-align left
         .icon
           width 284px
           height 132px
           left 5px
           top 10px
+      @media (max-aspect-ratio index-small)
+        .bike
+          top 30%

@@ -1,0 +1,9 @@
+tr(data-id=id)
+  td= name
+  td.__quantity
+    select(name=`acc[${id}]`)
+      each val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        option(value=val, selected=(val === num))= val
+  td
+    svg.__delete-acc: use(xlink:href='#svg-close')
+    span.price= `${price * num} €`

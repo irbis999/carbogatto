@@ -1,0 +1,52 @@
+- id = Math.random()
+tbody(data-frame-id=frameId,
+data-battery-id=batteryId,
+data-motor-id=motorId,
+data-tyres-id=tyresId,
+data-color-id=colorId)
+  tr
+    td CARBOGATTO BIKE
+    td.__quantity
+      select(name=`bikes[${id}][quantity]`)
+        each val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+          option(value=val, selected=(val === num))= val
+    td
+      svg.__delete-bike: use(xlink:href='#svg-close')
+      span.price= `${bikeBasePrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][color_id]`,
+    value=colorId)
+    td
+      span.color-name= `COLOR: ${colorName}`
+      svg.selected-color(fill=colorFill): use(xlink:href='#svg-hex')
+    td(colspan=2,
+    class={transparent: colorDefault})= `${colorPrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][frame_id]`,
+    value=frameId)
+    td= `FRAME: ${frameName}`
+    td(colspan=2,
+    class={transparent: frameDefault})= `${framePrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][battery_id]`,
+    value=batteryId)
+    td= `BATTERY: ${batteryName}`
+    td(colspan=2,
+    class={transparent: batteryDefault})= `${batteryPrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][motor_id]`,
+    value=motorId)
+    td= `MOTOR: ${motorName}`
+    td(colspan=2,
+    class={transparent: motorDefault})= `${motorPrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][tyres_id]`,
+    value=tyresId)
+    td= `TYRES: ${tyresName}`
+    td(colspan=2,
+    class={transparent: tyresDefault})= `${tyresPrice} €`

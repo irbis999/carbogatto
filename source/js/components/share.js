@@ -5,7 +5,6 @@ class Share {
     this.elem = options.elem
 
     this.elem.click((event) => {
-      console.log('click')
       let link = $(event.target).closest(".ct-sc-link")
       if (link.length && this.elem[0].contains(event.target)) {
         if (link.hasClass("__in")) {

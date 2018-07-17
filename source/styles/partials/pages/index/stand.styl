@@ -2,28 +2,30 @@
 
 section.main.index
   .stand-block
-    background black no-repeat image-url('pages/index/stand-bg.jpg') 50% 30px / 100%
     container-styles()
+    slide()
     .text-block
-      padding-top 2em
+      margin-right 13.5em
     .bike
       position absolute
-      top 73%
-      right 52%
+      top calc(100% + 1.7em)
+      right 0
       text-transform uppercase
       color rgba(#c6c6c6, .6)
-      font-size .75em
-      padding 2em 0 2em 70px
+      font-size .9em
+      padding 90px 2em 2em 2em
       border-top 1px solid rgba(#c6c6c6, .3)
       border-bottom 1px solid rgba(#c6c6c6, .3)
-      width 125px
+      width 110px
       box-sizing border-box
+      z-index 2
+      text-align center
       .bike-icon
         position absolute
-        left 0
-        top 8px
-        width 60px
-        height 29px
+        left -10px
+        top 10px
+        width 130px
+        height 63px
 
     @media (min-width mup)
       mup-video-block()
@@ -32,10 +34,11 @@ section.main.index
         border-bottom-width 2px
         right auto
         left 65%
-        top 63%
+        top 50%
         width 350px
         font-size 1.21em
         padding 2em 0 2em 200px
+        text-align left
         .bike-icon
           width 167px
           height 79px
@@ -43,3 +46,6 @@ section.main.index
           top 35px
       .text-block
         padding-top 0
+      @media (max-aspect-ratio index-small)
+        .bike
+          top 63%

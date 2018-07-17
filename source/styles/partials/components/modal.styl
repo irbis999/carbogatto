@@ -1,6 +1,9 @@
 .modal-component
   position relative
   z-index 100
+  display none
+  &.__visible
+    display block
   .ct-mc-bg
     left 0
     top 0
@@ -20,6 +23,8 @@
     overflow-y auto
     padding 60px 0 1em 0
     .ct-mc-content
+      transform translateY(100vh)
+      transition transform 1s
       background white
       position relative
       max-width 550px

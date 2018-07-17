@@ -1,6 +1,6 @@
 class Waves {
   constructor(options) {
-    //return
+    return
     this.elem = options.elem
     //Блоки начинают с разных значений, чтобы не выглядело плоско - рассинхрон
     this.couter = +this.elem.data('start')

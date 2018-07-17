@@ -1,18 +1,20 @@
 .top-block.vh-slide.__first
   .site-container
     .container
-      //.video-scroll-block - это контейнер, который реагирует на wheel и проигрывает видео внутри себя
-      .video-block.video-scroll-block
-        .bottom-line
+      .video-block
         //В data-duration выводим продолжительность видео. Выводим чуть меньше на пару десятых секунды, чтобы не
-          уйти дальше чем у видео реально длинна
+          уйти дальше чем у видео реально длинна. все уже веведено, троганить ничего не нужно
         //видео грузятся сразу preload='auto', предполагается, что они будут хорошо сжаты
           иначе придется что-то другое придумывать
-        //К data-src станет src с расширением webm|mp4 - js
+        //К data-src станет src с расширением webm|mp4 - js это сделает
+        .bottom-line
+        .preloader
         video(preload='auto',
         muted='muted',
-        data-poster='../build/img/pages/index/top-poster.jpg',
-        data-duration=14.95,
+        playsinline,
+        poster='../build/img/pages/index/top-poster.jpg?ver=5',
+        data-duration=11.7,
         data-src='../build/img/pages/index/top')
       .text-block
         p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
+      img.arrow(src='../build/img/pages/index/arrow-down.png')
