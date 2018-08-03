@@ -8,11 +8,13 @@
           .preloader
           .top-line
           video(preload='auto',
-          muted='muted',
+          muted,
           playsinline,
-          poster='../build/img/pages/index/sus-poster.jpg?ver=5',
           data-duration=9.8,
-          data-src='../build/img/pages/index/sus')
+          data-poster='../build/img/pages/index/sus-poster.jpg?ver=5',
+          data-poster-mob='../build/img/pages/index/sus-poster-mob.jpg?ver=5',
+          data-src='../build/img/pages/index/sus',
+          data-src-mob='../build/img/pages/index/sus-mob.mp4')
           .bottom-line
         .bike.lozad.__sus-bike
           .icon

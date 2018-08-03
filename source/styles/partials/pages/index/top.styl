@@ -9,10 +9,6 @@ section.main.index
       overflow hidden
       margin-left -(container-padding)
       margin-right -(container-padding)
-      video
-        max-width none
-        width 140%
-        margin-left -20%
       .preloader
         position absolute
         left 10px
@@ -24,6 +20,7 @@ section.main.index
         z-index 3
         &.__loading
           background-image image-url('pages/index/preloader.png')
+          animation rotate 1s infinite
         &.__play
           background-image image-url('pages/index/play.png')
         &.__pause
@@ -44,6 +41,11 @@ section.main.index
       width 30px
       display block
       margin 0 auto 0 auto
+    //Телефоны альбом
+    @media (max-width mup) and (min-aspect-ratio index-album)
+      height auto
+      margin-bottom 7em
+
     @media (min-width mup)
       mup-video-block()
       padding-top 0
@@ -64,8 +66,6 @@ section.main.index
         .bottom-line
           height 25px
         video
-          margin-left 0
-          background black
           width 100%
           position relative
           display block

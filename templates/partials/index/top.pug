@@ -10,11 +10,13 @@
         .bottom-line
         .preloader
         video(preload='auto',
-        muted='muted',
+        muted,
         playsinline,
-        poster='../build/img/pages/index/top-poster.jpg?ver=5',
         data-duration=11.7,
-        data-src='../build/img/pages/index/top')
+        data-poster='../build/img/pages/index/top-poster.jpg?ver=5',
+        data-poster-mob='../build/img/pages/index/top-poster-mob.jpg?ver=5',
+        data-src='../build/img/pages/index/top'
+        data-src-mob='../build/img/pages/index/top-mob.mp4')
       .text-block
         p The City Racer gives you back your city. With its strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a smile to the faces of first-time motorbike riders.
       img.arrow(src='../build/img/pages/index/arrow-down.png')
