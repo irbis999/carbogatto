@@ -18,6 +18,7 @@ section.main.index
       float left
       width calc(100% - 90px)
       margin 0
+      min-height 80px
 
     @media (min-width mup)
       background-size auto
@@ -34,6 +35,7 @@ section.main.index
         float none
         margin-left auto
         margin-right auto
+        min-height 0
       .title
         margin-bottom 340px
       @media (max-aspect-ratio index-small)
@@ -49,4 +51,4 @@ section.main.index
         .logos
           margin-bottom 5em
       @media (max-aspect-ratio index-large)
-        height initial
+        min-height 0

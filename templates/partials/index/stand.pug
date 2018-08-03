@@ -7,11 +7,13 @@
           .top-line
           .preloader
           video(preload='auto',
-          muted='muted',
+          muted,
           playsinline,
-          poster='../build/img/pages/index/stand-poster.jpg?ver=5',
           data-duration=9.8,
-          data-src='../build/img/pages/index/stand')
+          data-poster='../build/img/pages/index/stand-poster.jpg?ver=5',
+          data-poster-mob='../build/img/pages/index/stand-poster-mob.jpg?ver=5',
+          data-src='../build/img/pages/index/stand',
+          data-src-mob='../build/img/pages/index/stand-mob.mp4')
           .bottom-line
         .bike.lozad.__stand
           include stand-bike-icon.html

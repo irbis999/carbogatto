@@ -10,11 +10,13 @@ include ../../mixins/svg
           //В data-duration выводится продолжительность видео - это уже настроено, трогать не надо
             в data-src - путь к видео без расширения (видео у нас 2 типа - mp4 и webm, js сам подставит нужное расширение)
           video(preload='auto',
-          muted='muted',
+          muted,
           playsinline,
-          poster='../build/img/pages/index/battery-poster.jpg?ver=5',
           data-duration=14.95,
-          data-src='../build/img/pages/index/battery')
+          data-poster='../build/img/pages/index/battery-poster.jpg?ver=5',
+          data-poster-mob='../build/img/pages/index/battery-poster-mob.jpg?ver=5',
+          data-src='../build/img/pages/index/battery',
+          data-src-mob='../build/img/pages/index/battery-mob.mp4')
           .bottom-line
         .icons-block.lozad.__battery
           .icons-line

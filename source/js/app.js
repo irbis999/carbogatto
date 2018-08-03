@@ -1,6 +1,5 @@
 import '@/components/cookie'
 import '@/components/sprite'
-import '@/components/video'
 import '@/components/share'
 import '@/components/order_modal/index'
 import '@/layout/nav'

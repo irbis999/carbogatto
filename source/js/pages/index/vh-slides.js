@@ -1,8 +1,11 @@
 import 'jquery.scrollto'
 import device from 'current-device'
 import _debounce from 'lodash.debounce'
-import queryString from 'query-string'
 import supportsVideoType from '@/components/supports_video_type'
+
+function isSafari() {
+  return /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
+}
 
 class Slides {
   constructor(options) {
@@ -11,8 +14,6 @@ class Slides {
     this.elem = options.elem
     this.busy = false
     //Отматываем страницу наверх и ставим первый слайд и первое видео
-    //TODO доделать в боевом режиме
-    //TODO в конце - полный тест во всех браузерах и системах
     if (device.desktop()) {
       window.scrollTo(0, 0)
       this.currentSlideElem = this.elem.find('.vh-slide').first()
@@ -30,35 +31,56 @@ class Slides {
 
     //Управление скролом
     if (device.desktop()) {
+      //Cтавим постеры
+      this.initDesktopPosters()
       //Пагинация
       this.initPagination()
       //Десктопы
-      if (device.macos()) {
+      if (device.macos() && isSafari()) {
         $(document).on('wheel', this.wheelListener.bind(this))
+        //$(document).on('wheel', this.fallbackWheelListener.bind(this))
       } else {
         $(document).on('wheel', this.fallbackWheelListener.bind(this))
       }
     } else {
-      //this.initMobile()
-      this.initMobile2()
+      this.initMobile()
     }
-
 
     //При ресайзе нужно подкрутить прокрутку к текущему слайду
     $(window).resize(_debounce(this.resizeAdjust.bind(this), 400))
   }
 
+  initDesktopPosters() {
+    this.elem.find('video').each((index, elem) => {
+      $(elem).attr('poster', $(elem).data('poster'))
+    })
+  }
+
+  initMobilePosters() {
+    this.elem.find('video').each((index, elem) => {
+      $(elem).attr('poster', $(elem).data('poster-mob'))
+    })
+  }
+
   initPagination() {
     this.elem.click(e => {
-      if(this.busy) return
+      if (this.busy) return
       let pagElem = $(e.target).closest('.pagination svg:not(.__active)')
-      if(!pagElem.length) return
+      if (!pagElem.length) return
       this.move('next', $(pagElem.data('slide')))
     })
   }
 
-  //TODO нужен рефакторинг метода
-  initMobile2() {
+  //Инициализация телефонов и планшетов
+  initMobile() {
+    //На телефонах показывается одно видео и один постер
+    //на планшетах - другой постер и другое видео
+    if(device.mobile()) {
+      this.initMobilePosters()
+    } else {
+      this.initDesktopPosters()
+    }
+
     //После воспроизведения
     this.elem.find('video').on('ended', e => {
       let video = $(e.target)
@@ -85,152 +107,79 @@ class Slides {
         .data('loading', false)
     })
 
-    //Воспроизведение видео
-    this.elem.click(e => {
-      let video = $()
-      if($(e.target).is('video')) {
-        video = $(e.target)
-      }
-      if($(e.target).closest('.video-container, .video-block').length) {
-        video = $(e.target).closest('.video-container, .video-block').find('video')
-      }
-
-      if(!video.length) return
-      if(video.data('loading')) return
-
-      let preloader = video
-        .closest('.video-container, .video-block')
-        .find('.preloader')
-
-      //Первичная инициализация видео
-      if(!video.data('inited')) {
-        //Safari - mp4
-        let ext = '.mp4'
-        if (supportsVideoType('webm') === 'probably') {
-          //Chrome, FF
-          //TODO добавить webm когда будут новые исходники
-          //ext = '.webm'
-        }
-        //Ставим исходник
-        video
-          .attr('src', `${video.data('src')}${ext}?ver=6`)
-          .data('inited', true)
-          .data('loading', true)
-        //Запускаем
-        video[0].play()
-        //Прелоадер - лоадинг
-        preloader.removeClass('__play __pause').addClass('__loading')
-        return
-      }
-
-      //Видео проигрывается
-      if(video.data('playing')) {
-        video[0].pause()
-        video
-          .data('playing', false)
-          .data('paused', true)
-        preloader.removeClass('__pause __loading').addClass('__play')
-        return
-      }
-
-      //Видео на паузе
-      if(video.data('paused')) {
-        video[0].play()
-        video
-          .data('playing', true)
-          .data('paused', false)
-        preloader.removeClass('__play __loading').addClass('__pause')
-        return
-      }
-
-      //Видео проиграно до конца
-      if(video.data('played')) {
-        video[0].currentTime = 0
-        video[0].play()
-        video
-          .data('played', false)
-          .data('playing', true)
-        preloader.removeClass('__play __loading').addClass('__pause')
-      }
-    })
-
     //Переход ко второму слайду
-    this.elem.find('.top-block .arrow').click(e => {
+    this.elem.find('.top-block .arrow').click(() => {
       $.scrollTo(this.elem.find('.frame-block'), 800)
     })
+
+    //Обработка клика по видео
+    this.elem.click(this.processMobileVideoClick.bind(this))
   }
 
-  //Телефоны/планшеты
-  initMobile() {
-    let y0 = 0
+  processMobileVideoClick(e) {
+    let video = $()
+    if ($(e.target).is('video')) {
+      video = $(e.target)
+    }
+    if ($(e.target).closest('.video-container, .video-block').length) {
+      video = $(e.target).closest('.video-container, .video-block').find('video')
+    }
 
-    //фиксируем где приложили палец
-    document.addEventListener('touchstart', e => {
-      if (this.busy) return
-      y0 = e.changedTouches[0].clientY
-    }, {passive: false})
+    if (!video.length) return
+    if (video.data('loading')) return
 
-    //Предотвращаем скролл. Если превентить start и end то не будет работать click
-    document.addEventListener('touchmove', e => {
-      e.preventDefault()
-    }, {passive: false})
+    let preloader = video
+      .closest('.video-container, .video-block')
+      .find('.preloader')
 
-    //Определяем направление скрола и выполяем переход между слайдами
-    document.addEventListener('touchend', e => {
-      if (this.busy) return
-
-      let delta = e.changedTouches[0].clientY - y0
-      if (Math.abs(delta) < 30) return
-      let direction = 'next'
-      if (delta > 0) {
-        direction = 'prev'
+    //Первичная инициализация видео
+    if (!video.data('inited')) {
+      //Ставим исходник. У планшетов десктопный исходник, у телефонов - мобильный
+      //у десктопного исходника нет расширения в дата-атрибуте
+      let src = `${video.data('src')}.mp4?ver=6`
+      if(device.mobile()) {
+        src = video.data('src-mob') + '?ver=6'
       }
+      video
+        .attr('src', src)
+        .data('inited', true)
+        .data('loading', true)
+      //Запускаем
+      video[0].play()
+      //Прелоадер - лоадинг
+      preloader.removeClass('__play __pause').addClass('__loading')
+      return
+    }
 
-      //Если мы скролим вниз и внутри элемента
-      // есть не просмотренное видео то смотрим видео
-      if (direction === 'next' &&
-        this.currentVideoElem.length &&
-        !this.currentVideoElem.data('playing') &&
-        !this.currentVideoElem.data('played')) {
-        this.mobilePlayVideo()
-        return
-      }
+    //Видео проигрывается
+    if (video.data('playing')) {
+      video[0].pause()
+      video
+        .data('playing', false)
+        .data('paused', true)
+      preloader.removeClass('__pause __loading').addClass('__play')
+      return
+    }
 
-      //Переходим к следующему слайду
-      this.move(direction)
-    }, {passive: false})
-  }
+    //Видео на паузе
+    if (video.data('paused')) {
+      video[0].play()
+      video
+        .data('playing', true)
+        .data('paused', false)
+      preloader.removeClass('__play __loading').addClass('__pause')
+      return
+    }
 
-  mobilePlayVideo() {
-    if (this.busy) return
-    this.fallbackPlayVideo()
-  }
-
-  playHpantomVideo() {
-    let newVideo = this.currentVideoElem.clone(true)
-    newVideo[0].currentTime = 0
-
-    newVideo
-      .addClass('__phantom')
-      //.attr('autoplay', 'autoplay')
-      .data('playing', true)
-      .on('ended', () => {
-        newVideo
-          .data('playing', false)
-          .data('played', true)
-        this.busy = false
-      })
-    this.currentVideoElem.before(newVideo)
-    //newVideo[0].autoplay = true
-    newVideo[0].play()
-    //Чтобы не было мерцаний
-    setTimeout(() => {
-      this.currentVideoElem.remove()
-      newVideo.removeClass('__phantom')
-      this.currentVideoElem = newVideo
-    }, 500)
-
-    this.busy = true
+    //Видео проиграно до конца
+    if (video.data('played')) {
+      video[0].currentTime = 0
+      video[0].play()
+      video
+        .data('played', false)
+        .data('playing', true)
+      preloader.removeClass('__play __loading').addClass('__pause')
+    }
   }
 
   move(direction = 'next', nextSlideElem = null) {
@@ -250,7 +199,7 @@ class Slides {
       nextSlide = this.elem.find('.vh-slide.__last')
     }
     //Если однозначно передали к какому слайду идем
-    if(nextSlideElem) {
+    if (nextSlideElem) {
       nextSlide = nextSlideElem
     }
 
@@ -287,7 +236,7 @@ class Slides {
   }
 
   resizeAdjust() {
-    if(device.desktop()) {
+    if (device.desktop()) {
       $.scrollTo(this.currentSlideElem, 400)
     }
   }
@@ -405,12 +354,12 @@ class Slides {
     let currentPagElem
     this.elem.find('.pagination svg').each((index, elem) => {
       let selector = $(elem).data('slide')
-      if(this.currentSlideElem.is(selector)) {
+      if (this.currentSlideElem.is(selector)) {
         currentPagElem = $(elem)
       }
     })
 
-    if(currentPagElem) {
+    if (currentPagElem) {
       this.elem.find('.pagination svg').removeClass('__active')
       currentPagElem.addClass('__active')
     }
@@ -426,7 +375,6 @@ class Slides {
     let ext = '.mp4'
     if (supportsVideoType('webm') === 'probably') {
       //Chrome, FF
-      //TODO добавить webm когда будут новые исходники
       //ext = '.webm'
     }
 
@@ -436,13 +384,13 @@ class Slides {
       .prop('preload', 'auto')
       .data('inited', true)
 
-    //Отслеживаем загрузку видео
-    this.currentVideoElem.on('progress', e => {
-      if(!e.target.buffered.length) return
-      if($(e.target).data('duration') <= e.target.buffered.end(0)) {
-        console.log('loaded')
-      }
-    })
+    //Отслеживаем загрузку видео. Пока не используется
+    //this.currentVideoElem.on('progress', e => {
+    //  if (!e.target.buffered.length) return
+    //  if ($(e.target).data('duration') <= e.target.buffered.end(0)) {
+    //    console.log('loaded')
+    //  }
+    //})
   }
 }
 
