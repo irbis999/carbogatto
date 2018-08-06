@@ -19,7 +19,10 @@ data-color-id=colorId)
     value=colorId)
     td
       span.color-name= `COLOR: ${colorName}`
-      svg.selected-color(fill=colorFill): use(xlink:href='#svg-hex')
+      if colorFill === 'camo'
+        svg.selected-color.__camo(fill-opacity='0.01', fill='white'): use(xlink:href='#svg-hex')
+      else
+        svg.selected-color(fill=colorFill): use(xlink:href='#svg-hex')
     td(colspan=2,
     class={transparent: colorDefault})= `${colorPrice} €`
   tr

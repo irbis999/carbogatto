@@ -30,7 +30,21 @@ block body
               .dot
       .site-container
         .title Create your carbogatto
-        img.bike(src='../build/img/pages/buy/bike.png')
+        .view
+          .view-title View
+          .view-value
+            label
+              input(type='radio',
+              name='view-type',
+              value='side',
+              checked)
+              span side
+            label
+              input(type='radio',
+              name='view-type'
+              value='half')
+              span half
+        img.bike(src='../build/img/pages/buy/models/standart.png')
         .params
           .container
             table(align='center')
@@ -80,22 +94,14 @@ block body
               name='color',
               checked,
               value=1,
-              data-name='White',
+              data-name='Standart',
               data-price=500,
               data-default='true',
-              data-fill='white')
+              data-fill='white',
+              data-side='../build/img/pages/buy/models/standart.png',
+              data-half='../build/img/pages/buy/models/standart_half.png')
               svg.hex(fill='white'): +use('hex-border-grey')
               svg.hex-checked(fill='white'): +use('hex-border')
-              .check
-            label.item
-              input(type='radio',
-              name='color',
-              value=2,
-              data-name='Blue',
-              data-price=1000,
-              data-fill='#00a4f0')
-              svg.hex(fill='#00a4f0'): +use('hex')
-              svg.hex-checked(fill='#00a4f0'): +use('hex-border')
               .check
             label.item
               input(type='radio',
@@ -103,7 +109,9 @@ block body
               value=3,
               data-name='Yellow',
               data-price=1000,
-              data-fill='#e5b700')
+              data-fill='#e5b700',
+              data-side='../build/img/pages/buy/models/yellow.png',
+              data-half='../build/img/pages/buy/models/yellow_half.png')
               svg.hex(fill='#e5b700'): +use('hex')
               svg.hex-checked(fill='#e5b700'): +use('hex-border')
               .check
@@ -111,31 +119,13 @@ block body
               input(type='radio',
               name='color',
               value=4,
-              data-name='Green',
+              data-name='Black-red',
               data-price=1000,
-              data-fill='#596a5d')
-              svg.hex(fill='#596a5d'): +use('hex')
-              svg.hex-checked(fill='#596a5d'): +use('hex-border')
-              .check
-            label.item
-              input(type='radio',
-              name='color',
-              value=5,
-              data-name='Orange',
-              data-price=1000,
-              data-fill='#ee7307')
-              svg.hex(fill='#ee7307'): +use('hex')
-              svg.hex-checked(fill='#ee7307'): +use('hex-border')
-              .check
-            label.item
-              input(type='radio',
-              name='color',
-              value=6,
-              data-name='Grey',
-              data-price=1000,
-              data-fill='#707070')
-              svg.hex(fill='#707070'): +use('hex')
-              svg.hex-checked(fill='#707070'): +use('hex-border')
+              data-fill='#212121',
+              data-side='../build/img/pages/buy/models/black-red.png',
+              data-half='../build/img/pages/buy/models/black-red_half.png')
+              svg.hex(fill='#212121'): +use('hex')
+              svg.hex-checked(fill='#212121'): +use('hex-border')
               .check
             label.item
               input(type='radio',
@@ -143,10 +133,50 @@ block body
               value=7,
               data-name='Red',
               data-price=1000,
-              data-fill='#9b2821')
+              data-fill='#9b2821',
+              data-side='../build/img/pages/buy/models/red.png',
+              data-half='../build/img/pages/buy/models/red_half.png')
               svg.hex(fill='#9b2821'): +use('hex')
               svg.hex-checked(fill='#9b2821'): +use('hex-border')
               .check
+            label.item
+              input(type='radio',
+              name='color',
+              value=2,
+              data-name='Blue',
+              data-price=1000,
+              data-fill='#00a4f0',
+              data-side='../build/img/pages/buy/models/blue.png',
+              data-half='../build/img/pages/buy/models/blue_half.png')
+              svg.hex(fill='#00a4f0'): +use('hex')
+              svg.hex-checked(fill='#00a4f0'): +use('hex-border')
+              .check
+
+            label.item
+              input(type='radio',
+              name='color',
+              value=5,
+              data-name='Camo',
+              data-price=1000,
+              data-fill='camo',
+              data-side='../build/img/pages/buy/models/camo.png',
+              data-half='../build/img/pages/buy/models/camo_half.png')
+              svg.hex.__camo(fill='red', fill-opacity='0.1'): +use('hex')
+              svg.hex-checked.__camo(fill='red', fill-opacity='0.1'): +use('hex-border')
+              .check
+            label.item
+              input(type='radio',
+              name='color',
+              value=6,
+              data-name='White',
+              data-price=1000,
+              data-fill='#f0f0f0',
+              data-side='../build/img/pages/buy/models/white.png',
+              data-half='../build/img/pages/buy/models/white_half.png')
+              svg.hex(fill='#f0f0f0'): +use('hex')
+              svg.hex-checked(fill='#f0f0f0'): +use('hex-border')
+              .check
+
         .options-block
           .option.frame-control
             .block-title Frame
