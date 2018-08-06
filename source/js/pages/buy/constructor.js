@@ -16,6 +16,9 @@ class Index {
     this.tyresNameElem = this.elem.find('.tyres-name')
     this.tyresPriceElem = this.elem.find('.tyres-price')
     this.tyresControlElem = this.elem.find('.tyres-control')
+    this.colorControlElem = this.elem.find('.color-block input[type=radio]')
+    this.viewControlElem = this.elem.find('.view input[type=radio]')
+    this.bikeElem = this.elem.find('.top-block .bike')
     this.orderModalElem = $('.modal-component.__order')
 
     this.frameControlElem.on('change', (event) => {
@@ -54,10 +57,40 @@ class Index {
       this.setTotal()
     })
 
+    //Изменение цвета
+    this.colorControlElem.on('change', e => {
+      if(this.viewControlElem.filter(':checked').val() === 'side') {
+        this.bikeElem.attr('src', $(e.target).data('side'))
+        return
+      }
+
+      this.bikeElem.attr('src', $(e.target).data('half'))
+    })
+
+    //Изменение вида
+    this.viewControlElem.on('change', e => {
+      let activeColorElem = this.colorControlElem.filter(':checked')
+      if($(e.target).val() === 'side') {
+        this.bikeElem.attr('src', activeColorElem.data('side'))
+        return
+      }
+
+      this.bikeElem.attr('src', activeColorElem.data('half'))
+    })
+
     //Для первичной инициализации
     this.elem.find('.options-block input[type=radio]:checked')
       .trigger('change')
 
+    //Подгрузим все картинки байков заранее
+    this.colorControlElem.each((index, elem) => {
+      let img = new Image()
+      img.src = $(elem).data('side')
+      let img2 = new Image()
+      img2.src = $(elem).data('half')
+    })
+
+    //Окно с заказом
     this.elem.click(e => {
       if($(e.target).closest('.__buy-button').length &&
       this.elem[0].contains(e.target)) {
