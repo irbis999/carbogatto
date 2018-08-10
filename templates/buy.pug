@@ -9,6 +9,12 @@ block body
   include partials/order_modal
   section.main.buy
     .top-block
+      video.dots(data-mob-src='../build/img/pages/buy/dots-mobile.mp4',
+      data-desktop-src='../build/img/pages/buy/dots-desktop.mp4',
+      playsinline,
+      muted,
+      autoplay,
+      loop,)
       //- dotsArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
       //Частицы перед великом
         сейчас частицы анимируются следующим образом. У блоков .waves меняется translateY вверх-вниз
@@ -18,12 +24,12 @@ block body
         картинка будет стоять на бекграунде блока .waves и также будут "качаться" блоки .waves
         на счет того как именно их качать нужно подумать, чтобы это выглядело по-интересенее, может быть с перехлестыванием
         может быть один сильнее другой слабее - пробовать надо
-      each i in [1,2,3]
+      //each i in [1,2,3]
         .waves(class=`__${i}`, data-start=(i / 10))
           //each val in dotsArray
             .dot
       //Частицы за великом
-      .waves-back-container
+      //.waves-back-container
         each i in [1,2,3]
           .waves.__back(class=`__${i}`, data-start=(i / 22))
             //each val in dotsArray
@@ -93,15 +99,15 @@ block body
               input(type='radio',
               name='color',
               checked,
-              value=1,
-              data-name='Standart',
-              data-price=500,
+              value=5,
+              data-name='Carbon',
+              data-price=1000,
               data-default='true',
-              data-fill='white',
+              data-fill='carbon',
               data-side='../build/img/pages/buy/models/standart.png',
               data-half='../build/img/pages/buy/models/standart_half.png')
-              svg.hex(fill='white'): +use('hex-border-grey')
-              svg.hex-checked(fill='white'): +use('hex-border')
+              svg.hex.__carbon(fill='white', fill-opacity='0.1'): +use('hex')
+              svg.hex-checked.__carbon(fill='white', fill-opacity='0.1'): +use('hex-border')
               .check
             label.item
               input(type='radio',
@@ -151,31 +157,31 @@ block body
               svg.hex(fill='#00a4f0'): +use('hex')
               svg.hex-checked(fill='#00a4f0'): +use('hex-border')
               .check
-
-            label.item
-              input(type='radio',
-              name='color',
-              value=5,
-              data-name='Camo',
-              data-price=1000,
-              data-fill='camo',
-              data-side='../build/img/pages/buy/models/camo.png',
-              data-half='../build/img/pages/buy/models/camo_half.png')
-              svg.hex.__camo(fill='red', fill-opacity='0.1'): +use('hex')
-              svg.hex-checked.__camo(fill='red', fill-opacity='0.1'): +use('hex-border')
-              .check
             label.item
               input(type='radio',
               name='color',
               value=6,
-              data-name='White',
+              data-name='Camo',
               data-price=1000,
-              data-fill='#f0f0f0',
+              data-fill='#806b2a',
+              data-side='../build/img/pages/buy/models/camo.png',
+              data-half='../build/img/pages/buy/models/camo_half.png')
+              svg.hex(fill='#806b2a'): +use('hex')
+              svg.hex-checked(fill='#806b2a'): +use('hex-border')
+              .check
+            label.item
+              input(type='radio',
+              name='color',
+              value=1,
+              data-name='White',
+              data-price=500,
+              data-fill='white',
               data-side='../build/img/pages/buy/models/white.png',
               data-half='../build/img/pages/buy/models/white_half.png')
-              svg.hex(fill='#f0f0f0'): +use('hex')
-              svg.hex-checked(fill='#f0f0f0'): +use('hex-border')
+              svg.hex(fill='white'): +use('hex-border-grey')
+              svg.hex-checked(fill='white'): +use('hex-border')
               .check
+
 
         .options-block
           .option.frame-control

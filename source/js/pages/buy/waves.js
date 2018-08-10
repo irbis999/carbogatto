@@ -1,29 +1,41 @@
+import _debounce from 'lodash.debounce'
+
 class Waves {
   constructor(options) {
-    return
     this.elem = options.elem
-    //Блоки начинают с разных значений, чтобы не выглядело плоско - рассинхрон
-    this.couter = +this.elem.data('start')
-    this.delta = .01
-    if (this.elem.hasClass('__back')) {
-      this.delta = .005
+    this.mup = $('body').data('mup')
+    this.device = 'desktop'
+    if (window.innerWidth < this.mup) {
+      this.device = 'mobile'
     }
-    this.setDotPosition()
+    this.setSrc()
+    $(window).on('resize', _debounce(this.checkElems.bind(this), 200))
   }
 
-  setDotPosition() {
-    //top : 0-100
-    //Какачем вверх-вниз блок .waves
-    let top = 100 * Math.sin(Math.PI * this.couter) / 2 + 50
-    this.couter += this.delta
-    this.elem.css('transform', `translateY(${top}%)`)
-    requestAnimationFrame(this.setDotPosition.bind(this))
+  checkElems() {
+    let width = window.innerWidth
+    let device = 'desktop'
+    if (width < this.mup) {
+      device = 'mobile'
+    }
+    if (this.device === device) {
+      return
+    }
+    this.device = device
+    this.setSrc()
+  }
+
+  setSrc() {
+    let src = this.elem.data('desktop-src')
+    if(this.device === 'mobile') {
+      src = this.elem.data('mob-src')
+    }
+    this.elem.attr('src', src)
   }
 }
 
 $(document).ready(() => {
-  $('section.main.buy .top-block .waves').each((index, elem) => {
+  $('section.main.buy .top-block video.dots').each((index, elem) => {
     new Waves({elem: $(elem)})
   })
 })
-

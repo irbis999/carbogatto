@@ -5,6 +5,21 @@ section.main.buy
     padding 2em 0 0 0
     position relative
     overflow hidden
+    .site-container
+      position relative
+      z-index 2
+    video.dots
+      position absolute
+      left 50%
+      top -30%
+      z-index 1
+      width 700px
+      max-width none
+      margin-left -350px
+      @media (min-width 370px)
+        top -20%
+      @media (min-width 450px)
+        top -10%
     .title
       text-transform uppercase
       font-size 1.9em
@@ -127,8 +142,8 @@ section.main.buy
         .hex, .hex-checked
           width 42px
           height @width
-          &.__camo
-            background image-url('pages/buy/camo.png') no-repeat top center / contain
+          &.__carbon
+            background image-url('pages/buy/carbon.png') no-repeat top center / contain
         .hex + .hex-checked
           display none
         .check
@@ -184,10 +199,12 @@ section.main.buy
   @media (min-width mup)
     .top-block
       padding-top 3em
-      overflow hidden
       .site-container
-        position relative
         background  image-url('pages/buy/bg.png') no-repeat -15px 100%
+      video.dots
+        top 50px
+        width 2000px
+        margin-left -1000px
       .title
         font-size 2.3em
         width auto
