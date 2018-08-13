@@ -59,17 +59,28 @@ section.main.index
       .bike
         border-top-width 2px
         border-bottom-width 2px
-        top 20%
-        right 55%
         width 500px
         font-size 1.21em
         padding 2.5em 0 2.5em 325px
         text-align left
+        right 55%
         .icon
           width 284px
           height 132px
           left 5px
           top 10px
-      @media (max-aspect-ratio index-small)
+      //Передняя подвеска
+      &.__front
         .bike
-          top 30%
+          top 20%
+      //Задняя подвеска
+      &.__rear
+        .bike
+          top 9%
+      @media (max-aspect-ratio index-small)
+        &.__front
+          .bike
+            top 30%
+        &.__rear
+          .bike
+            top 15%
