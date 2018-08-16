@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="101px" height="116px" viewBox="0 0 101 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>warranty</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="warranty" transform="translate(2.000000, 3.000000)" stroke="#000000" stroke-width="4">
+            <polygon id="Polygon_1_copy_2" points="48.024 0 96.038 27.5 96.038 82.5 48.024 110 0.01 82.5 0.01 27.5"></polygon>
+            <path d="M50.331,19.11 C50.331,19.11 44.059,32.59 22.631,35.65 C20.671,55.77 23.963,76.31 50.331,87.64" id="Shape"></path>
+            <path d="M47.983,20.2 C47.983,20.2 54.204,33.5 75.455,36.52 C77.399,56.38 74.134,76.64 47.983,87.81" id="Shape_3_copy"></path>
+            <polyline id="Shape" points="38.031 52 46.031 60 60.031 46"></polyline>
+        </g>
+    </g>
+</svg>
