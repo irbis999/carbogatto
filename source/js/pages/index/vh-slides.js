@@ -136,9 +136,9 @@ class Slides {
     if (!video.data('inited')) {
       //Ставим исходник. У планшетов десктопный исходник, у телефонов - мобильный
       //у десктопного исходника нет расширения в дата-атрибуте
-      let src = `${video.data('src')}.mp4?ver=6`
+      let src = `${video.data('src')}.mp4?ver=7`
       if(device.mobile()) {
-        src = video.data('src-mob') + '?ver=6'
+        src = video.data('src-mob') + '?ver=7'
       }
       video
         .attr('src', src)
@@ -379,7 +379,7 @@ class Slides {
     }
 
     this.currentVideoElem
-      .attr('src', `${this.currentVideoElem.data('src')}${ext}?ver=6`)
+      .attr('src', `${this.currentVideoElem.data('src')}${ext}?ver=7`)
       .attr('preload', 'auto')
       .prop('preload', 'auto')
       .data('inited', true)

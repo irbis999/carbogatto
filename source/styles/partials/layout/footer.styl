@@ -44,6 +44,9 @@ footer.main
       left 50%
       margin-left -7.5em
       font-size 1.33rem
+      a
+        display inline-block
+        margin-right .5em
       em
         color color-blue
         font-style normal
@@ -78,9 +81,9 @@ footer.main
       a
         font-size .95em
     .address
-      width 27%
+      width 26%
     .social
-      width 205px
+      width 215px
       padding-top 2.5em
       svg
         width 50px
@@ -100,3 +103,9 @@ footer.main
         position static
         text-align right
         font-size 1.6rem
+        a
+          text-decoration none
+          line-height 1
+          border-bottom 1px solid rgba(color-blue, .5)
+          &:hover
+            border-bottom-color transparent
