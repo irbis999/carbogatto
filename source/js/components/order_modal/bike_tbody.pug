@@ -3,7 +3,9 @@ tbody(data-frame-id=frameId,
 data-battery-id=batteryId,
 data-motor-id=motorId,
 data-tyres-id=tyresId,
-data-color-id=colorId)
+data-color-id=colorId,
+data-details-id=detailsId,
+data-links-id=linksId,)
   tr
     td CARBOGATTO BIKE
     td.__quantity
@@ -20,11 +22,34 @@ data-color-id=colorId)
     td
       span.color-name= `COLOR: ${colorName}`
       if colorFill === 'carbon'
-        svg.selected-color.__carbon(fill-opacity='0.01', fill='white'): use(xlink:href='#svg-hex')
+        svg.selected-color.__carbon(fill-opacity='0.01', fill='white')
+          use(xlink:href='#svg-hex')
       else
         svg.selected-color(fill=colorFill): use(xlink:href='#svg-hex')
     td(colspan=2,
     class={transparent: colorDefault})= `${colorPrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][links_id]`,
+    value=linksId)
+    td
+      span.color-name= `LINKS COLOR: ${linksName}`
+      if linksFill === 'gradient'
+        svg.selected-color.__gradient(fill-opacity='0.01', fill='white')
+          use(xlink:href='#svg-hex')
+      else
+        svg.selected-color(fill=linksFill): use(xlink:href='#svg-hex')
+    td(colspan=2,
+    class={transparent: linksDefault})= `${linksPrice} €`
+  tr
+    input(type='hidden',
+    name=`bikes[${id}][details_id]`,
+    value=detailsId)
+    td
+      span.color-name= `HANDLES, SUPPORTS AND SEAT COLOR: ${detailsName}`
+      svg.selected-color(fill=detailsFill): use(xlink:href='#svg-hex')
+    td(colspan=2,
+    class={transparent: detailsDefault})= `${detailsPrice} €`
   tr
     input(type='hidden',
     name=`bikes[${id}][frame_id]`,

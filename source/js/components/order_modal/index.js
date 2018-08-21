@@ -108,7 +108,9 @@ class OrderModal {
   setBikesTotal() {
     let total = 0
     for (let item of BikesCart.getCart()) {
-      let price = this.bikeBasePrice + item.framePrice + item.batteryPrice + item.motorPrice + item.tyresPrice + item.colorPrice
+      let price = this.bikeBasePrice + item.framePrice + item.batteryPrice +
+        item.motorPrice + item.tyresPrice + item.colorPrice +
+        item.detailsPrice + item.linksPrice
       total += price * item.num
     }
     this.elem.find('.__bikes-total').text(`${total} €`)
@@ -122,7 +124,8 @@ class OrderModal {
       motorId: bikeElem.data('motor-id'),
       tyresId: bikeElem.data('tyres-id'),
       colorId: bikeElem.data('color-id'),
-
+      detailsId: bikeElem.data('details-id'),
+      linksId: bikeElem.data('links-id'),
     })
     bikeElem.remove()
     this.checkBikesVisibility()
@@ -139,6 +142,8 @@ class OrderModal {
       motorId: tbodyElem.data('motor-id'),
       tyresId: tbodyElem.data('tyres-id'),
       colorId: tbodyElem.data('color-id'),
+      detailsId: tbodyElem.data('details-id'),
+      linksId: tbodyElem.data('links-id'),
     })
     let item = cart[index]
     item.num = +$(e.target).val()
@@ -224,8 +229,6 @@ class OrderModal {
     contentElem
       .css('transform', 'translateY(100vh)')
       .one('transitionend', () => this.elem.fadeOut('fast'))
-
-
   }
 }
 

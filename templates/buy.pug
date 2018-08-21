@@ -1,11 +1,6 @@
 extends layout/layout
 
 block body
-  //Пока не используем threejs - выводим частицы своими стилями/скриптами
-  //script(src='https://threejs.org/build/three.min.js')
-  //script(src='https://threejs.org/examples/js/renderers/Projector.js')
-  //script(src='https://threejs.org/examples/js/renderers/CanvasRenderer.js')
-  //script(src='https://threejs.org/examples/js/libs/stats.min.js')
   include partials/order_modal
   section.main.buy
     .top-block
@@ -15,25 +10,6 @@ block body
       muted,
       autoplay,
       loop,)
-      //- dotsArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-      //Частицы перед великом
-        сейчас частицы анимируются следующим образом. У блоков .waves меняется translateY вверх-вниз
-        частицы при этом стоят в один ряд в одном блоке - просто в ровную линию и выводятся в html
-        каждая частика - это элемент .dot
-        предлагается попробовать перейти на вариант, когда каждый ряд частниц будет картинокй,
-        картинка будет стоять на бекграунде блока .waves и также будут "качаться" блоки .waves
-        на счет того как именно их качать нужно подумать, чтобы это выглядело по-интересенее, может быть с перехлестыванием
-        может быть один сильнее другой слабее - пробовать надо
-      //each i in [1,2,3]
-        .waves(class=`__${i}`, data-start=(i / 10))
-          //each val in dotsArray
-            .dot
-      //Частицы за великом
-      //.waves-back-container
-        each i in [1,2,3]
-          .waves.__back(class=`__${i}`, data-start=(i / 22))
-            //each val in dotsArray
-              .dot
       .site-container
         .title Create your carbogatto
         .view
@@ -51,9 +27,21 @@ block body
               value='half')
               span half
         img.bike(src='../build/img/pages/buy/models/standart.png')
+        img.details(src='../build/img/pages/buy/details/black_details.png')
+        img.links(src='../build/img/pages/buy/details/allim_links.png')
         .params
           .container
             table(align='center')
+              tr
+                td
+                  span Details color:
+                  em.details-name
+                td.details-price
+              tr
+                td
+                  span Links:
+                  em.links-name
+                td.links-price
               tr
                 td
                   span Frame:
@@ -182,13 +170,95 @@ block body
               svg.hex-checked(fill='white'): +use('hex-border')
               .check
 
-
         .options-block
+          .option.details-control
+            .block-title Handles, Supports AND Seat COLOR
+            .row
+              svg.hex(fill='black'): +use('hex')
+              label.button
+                //В value помещаем id конкретной выбранной опции
+                  data-default - логика такая же как и у цвета
+                input(type='radio',
+                name='details',
+                checked,
+                value=1,
+                data-default='true',
+                data-fill='black',
+                data-side='../build/img/pages/buy/details/black_details.png',
+                data-half='../build/img/pages/buy/details/black_details_half.png',)
+                .button-component.__blue.__select select
+                .button-component.__white.__unselect unselect
+              //При изменении радиокнопки цена из блока .price учитывается в пересчете
+                общей цены (блок .total-price выше) и для вывода в шапке (блок .frame-price, .battery-price, ...)
+              .price 250 €
+              .title.__margin-top Black
+            .row
+              svg.hex(fill='#9b2821'): +use('hex')
+              label.button
+                input(type='radio',
+                name='details',
+                value=2,
+                data-fill='#9b2821',
+                data-side='../build/img/pages/buy/details/red_details.png',
+                data-half='../build/img/pages/buy/details/red_details_half.png',)
+                .button-component.__blue.__select select
+                .button-component.__white.__unselect unselect
+              .price 150 €
+              .title.__margin-top Red
+          .option.links-control
+            .block-title Links Color
+            .row
+              svg.hex(fill='#adc3c5'): +use('hex')
+              label.button
+                //В value помещаем id конкретной опции
+                  data-default - логика такая же как и у цвета
+                input(type='radio',
+                name='links',
+                checked,
+                value=1,
+                data-default='true',
+                data-fill='#adc3c5',
+                data-side='../build/img/pages/buy/details/allim_links.png',
+                data-half='../build/img/pages/buy/details/allim_links_half.png',)
+                .button-component.__blue.__select select
+                .button-component.__white.__unselect unselect
+              //При изменении радиокнопки цена из блока .price учитывается в пересчете
+                общей цены (блок .total-price выше) и для вывода в шапке (блок .frame-price, .battery-price, ...)
+              .price 200 €
+              .title.__margin-top Allunium Matted
+            .row
+              svg.hex(fill='black'): +use('hex')
+              label.button
+                input(type='radio',
+                name='links',
+                value=2,
+                data-fill='black',
+                data-side='../build/img/pages/buy/details/black_links.png',
+                data-half='../build/img/pages/buy/details/black_links_half.png',)
+                .button-component.__blue.__select select
+                .button-component.__white.__unselect unselect
+              .price 100 €
+              .title.__margin-top Black Matted
+            .row
+              .hex.__gradient
+              label.button
+                input(type='radio',
+                name='links',
+                value=3,
+                data-fill='gradient',
+                data-side='../build/img/pages/buy/details/allim_links.png',
+                data-half='../build/img/pages/buy/details/allim_links_half.png',)
+                .button-component.__blue.__select select
+                .button-component.__white.__unselect unselect
+              .title.__margin-top.__individual Individual Color
+              input.individual(placeholder='Describe your wishes',
+              form='order-form',
+              name='individual-color')
           .option.frame-control
             .block-title Frame
             .row
               label.button
-                //В value помещаем id конкретной рамы
+                //В value помещаем id конкретной опции
                   data-default - логика такая же как и у цвета
                 input(type='radio',
                 name='frame',
