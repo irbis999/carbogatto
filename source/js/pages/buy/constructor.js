@@ -13,12 +13,20 @@ class Index {
     this.motorNameElem = this.elem.find('.motor-name')
     this.motorPriceElem = this.elem.find('.motor-price')
     this.motorControlElem = this.elem.find('.motor-control')
+    this.detailsControlElem = this.elem.find('.details-control')
+    this.detailsNameElem = this.elem.find('.details-name')
+    this.detailsPriceElem = this.elem.find('.details-price')
+    this.linksControlElem = this.elem.find('.links-control')
+    this.linksNameElem = this.elem.find('.links-name')
+    this.linksPriceElem = this.elem.find('.links-price')
     this.tyresNameElem = this.elem.find('.tyres-name')
     this.tyresPriceElem = this.elem.find('.tyres-price')
     this.tyresControlElem = this.elem.find('.tyres-control')
     this.colorControlElem = this.elem.find('.color-block input[type=radio]')
     this.viewControlElem = this.elem.find('.view input[type=radio]')
     this.bikeElem = this.elem.find('.top-block .bike')
+    this.detailsElem = this.elem.find('.top-block .details')
+    this.linksElem = this.elem.find('.top-block .links')
     this.orderModalElem = $('.modal-component.__order')
 
     this.frameControlElem.on('change', (event) => {
@@ -57,6 +65,40 @@ class Index {
       this.setTotal()
     })
 
+    //Детали
+    this.detailsControlElem.on('change', (event) => {
+      let rowElem = $(event.target).closest('.row')
+      this.detailsNameElem.data('id', $(event.target).val())
+      this.detailsNameElem.data('default', !!$(event.target).data('default'))
+      this.detailsNameElem.text(rowElem.find('.title').text())
+      this.detailsNameElem.data('fill', $(event.target).data('fill'))
+      this.detailsPriceElem.text(rowElem.find('.price').text())
+      this.setTotal()
+      let view = this.viewControlElem.filter(':checked').val()
+      let src = $(event.target).data('side')
+      if(view === 'half') {
+        src = $(event.target).data('half')
+      }
+      this.detailsElem.attr('src', src)
+    })
+
+    //Линки
+    this.linksControlElem.on('change', (event) => {
+      let rowElem = $(event.target).closest('.row')
+      this.linksNameElem.data('id', $(event.target).val())
+      this.linksNameElem.data('default', !!$(event.target).data('default'))
+      this.linksNameElem.text(rowElem.find('.title').text())
+      this.linksNameElem.data('fill', $(event.target).data('fill'))
+      this.linksPriceElem.text(rowElem.find('.price').text())
+      this.setTotal()
+      let view = this.viewControlElem.filter(':checked').val()
+      let src = $(event.target).data('side')
+      if(view === 'half') {
+        src = $(event.target).data('half')
+      }
+      this.linksElem.attr('src', src)
+    })
+
     //Изменение цвета
     this.colorControlElem.on('change', e => {
       if(this.viewControlElem.filter(':checked').val() === 'side') {
@@ -70,20 +112,38 @@ class Index {
     //Изменение вида
     this.viewControlElem.on('change', e => {
       let activeColorElem = this.colorControlElem.filter(':checked')
+      let activeDetailsElem = this.detailsControlElem.find('[type=radio]:checked')
+      let activeLinksElem = this.linksControlElem.find('[type=radio]:checked')
       if($(e.target).val() === 'side') {
         this.bikeElem.attr('src', activeColorElem.data('side'))
+        this.detailsElem.attr('src', activeDetailsElem.data('side'))
+        this.linksElem.attr('src', activeLinksElem.data('side'))
         return
       }
 
       this.bikeElem.attr('src', activeColorElem.data('half'))
+      this.detailsElem.attr('src', activeDetailsElem.data('half'))
+      this.linksElem.attr('src', activeLinksElem.data('half'))
     })
 
     //Для первичной инициализации
     this.elem.find('.options-block input[type=radio]:checked')
       .trigger('change')
 
-    //Подгрузим все картинки байков заранее
+    //Подгрузим все картинки байков и деталей заранее
     this.colorControlElem.each((index, elem) => {
+      let img = new Image()
+      img.src = $(elem).data('side')
+      let img2 = new Image()
+      img2.src = $(elem).data('half')
+    })
+    this.detailsControlElem.find('[type=radio]').each((index, elem) => {
+      let img = new Image()
+      img.src = $(elem).data('side')
+      let img2 = new Image()
+      img2.src = $(elem).data('half')
+    })
+    this.linksControlElem.find('[type=radio]').each((index, elem) => {
       let img = new Image()
       img.src = $(elem).data('side')
       let img2 = new Image()
@@ -93,7 +153,7 @@ class Index {
     //Окно с заказом
     this.elem.click(e => {
       if($(e.target).closest('.__buy-button').length &&
-      this.elem[0].contains(e.target)) {
+        this.elem[0].contains(e.target)) {
         this.showOrderModal()
       }
     })
@@ -124,6 +184,16 @@ class Index {
       tyresDefault: !!this.tyresNameElem.data('default'),
       tyresName: this.tyresNameElem.text(),
       tyresPrice: this.getNumPrice(this.tyresPriceElem.text()),
+      detailsId: +this.detailsNameElem.data('id'),
+      detailsDefault: !!this.detailsNameElem.data('default'),
+      detailsName: this.detailsNameElem.text(),
+      detailsPrice: this.getNumPrice(this.detailsPriceElem.text()),
+      detailsFill: this.detailsNameElem.data('fill'),
+      linksId: +this.linksNameElem.data('id'),
+      linksDefault: !!this.linksNameElem.data('default'),
+      linksName: this.linksNameElem.text(),
+      linksPrice: this.getNumPrice(this.linksPriceElem.text()),
+      linksFill: this.linksNameElem.data('fill'),
     }
     BikesCart.addBike(bike)
 
@@ -136,7 +206,7 @@ class Index {
 
   getNumPrice(price) {
     price = price.replace(/\D/g, '')
-    return +price
+    return +price || 0
   }
 
   setTotal() {
@@ -144,6 +214,9 @@ class Index {
     total += parseInt(this.batteryPriceElem.text().replace(/\s/g, ''))
     total += parseInt(this.motorPriceElem.text().replace(/\s/g, ''))
     total += parseInt(this.tyresPriceElem.text().replace(/\s/g, ''))
+    total += parseInt(this.detailsPriceElem.text().replace(/\s/g, ''))
+    total += parseInt(this.linksPriceElem.text().replace(/\s/g, '')) || 0
+
 
     let totalText = total.toString().replace(/./g, (c, i, a) => {
       return i && c !== "." && ((a.length - i) % 3 === 0) ? ' ' + c : c

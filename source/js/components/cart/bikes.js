@@ -2,7 +2,8 @@ export default class BikesCart {
   //bike: {frameId: Number, frameName: String, framePrice: Number,
   // batteryId: Number,  batteryName: String, batteryPrice: Number,
   // motorId: Number, motorName: String, motorPrice: Number,
-  // tyresId: Number, tyresName: String, tyresPrice: Number,}
+  // tyresId: Number, tyresName: String, tyresPrice: Number,
+  // detailsId: Number, linksId: Number}
   static addBike(bike, updateNum = false) {
     if (!this.checkBikeFormat(bike)) {
       return
@@ -37,7 +38,9 @@ export default class BikesCart {
       bike.batteryId === elem.batteryId &&
       bike.motorId === elem.motorId &&
       bike.tyresId === elem.tyresId &&
-      bike.colorId === elem.colorId) {
+      bike.colorId === elem.colorId &&
+      bike.detailsId === elem.detailsId &&
+      bike.linksId === elem.linksId) {
         return true
       }
     })
@@ -136,6 +139,16 @@ export default class BikesCart {
     }
     if (typeof bike.tyresPrice !== 'number') {
       console.error('tyresPrice must be number')
+      return false
+    }
+
+    if (typeof bike.detailsId !== 'number') {
+      console.error('detailsId must be number')
+      return false
+    }
+
+    if (typeof bike.linksId !== 'number') {
+      console.error('linksId must be number')
       return false
     }
 
