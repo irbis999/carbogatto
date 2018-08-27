@@ -17,6 +17,22 @@ section.main.index
   background black
   //Без рамки снизу глюк - белая полоса
   border-bottom 1px solid black
+  //Иконка вкл/выкл звук
+  .sound
+    audio
+      display none
+    .icon
+      cursor pointer
+      width 25px
+      height @width
+      position fixed
+      top 70px
+      right 15px
+      background image-url('pages/index/sound-off.svg') no-repeat top center / contain
+      z-index 10
+    &.__on
+      .icon
+        background-image: image-url('pages/index/sound-on.svg')
   p
     font-weight 300
     font-size 1.33em
@@ -172,6 +188,13 @@ section.main.index
 
   @media (min-width mup)
     overflow hidden
+    .sound
+      .icon
+        width 40px
+        height @width
+        left 10px
+        right auto
+        top 100px
     .relative-container
       margin-top 1.5em
     .video-container

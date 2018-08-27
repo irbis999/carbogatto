@@ -27,7 +27,7 @@ footer.main
     @extend .clearfix
     svg
       float left
-      width 26px
+      width 20px
       height @width
       fill color-blue
       margin 0 17px 0 0
@@ -36,6 +36,12 @@ footer.main
         height @width
         position relative
         top 2px
+      &.__instagram
+        width 15px
+        height @width
+        position relative
+        top 2px
+        margin-right 0
     .copy
       position absolute
       text-align center
@@ -86,16 +92,16 @@ footer.main
       width 215px
       padding-top 2.5em
       svg
-        width 50px
+        width 30px
         height @width
         margin-right 2em
         margin-bottom 2em
-        &.__youtube
-          margin-right 0
         &.__fb
-          width 40px
+          width 30px
           height @width
-          top 5px
+        &.__instagram
+          width 26px
+          height @width
       .copy
         width auto
         margin-left 0

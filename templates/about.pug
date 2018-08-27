@@ -40,15 +40,33 @@ block body
               small CEO
               p Short BIO strong performance, CARBO GATTO leaves everything behind them. The slender design provides for true pleasure of driving and even brings a sm
     .partners-block
-      .title Partners
-      .items
-        a.item(href='#')
-          //Ширина 170. Желательно пропорции ближе к 170х50
-          img(src='../build/img/pages/about-partner-1.png')
-        a.item(href='#')
-          img(src='../build/img/pages/about-partner-2.png')
-        a.item(href='#')
-          img(src='../build/img/pages/about-partner-3.png')
-        a.item(href='#')
-          img(src='../build/img/pages/about-partner-4.png')
-      a.button-component(href='#') Become a partner
+      .partners
+        .title Partners
+        .items
+          a.item(href='#')
+            //Ширина 170. Желательно пропорции ближе к 170х50
+            img(src='../build/img/pages/about-partner-1.png')
+          a.item(href='#')
+            img(src='../build/img/pages/about-partner-2.png')
+          a.item(href='#')
+            img(src='../build/img/pages/about-partner-3.png')
+          a.item(href='#')
+            img(src='../build/img/pages/about-partner-4.png')
+        .button-component.become Become a partner
+      //Форма отпраляется аяксом. От сервера ожидается просто статус 200
+      form.form
+        .container.form-content
+          .title Become a partner
+          input.form-input(placeholder='NAME',
+          required)
+          input.form-input(placeholder='EMAIL',
+          type='email',
+          required)
+          input.form-input(placeholder='PHONE NUMBER',
+          type='phone',
+          required)
+          textarea.form-input(placeholder='INTRODUCE YOURSELF',
+          required)
+          button.button-component.__black Apply
+        .thanx
+          .title Thank you
