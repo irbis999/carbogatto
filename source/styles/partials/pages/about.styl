@@ -116,20 +116,39 @@ section.main.about
         font-size 1.14em
         margin-top .3em
   .partners-block
-    color white
-    background #787878
-    padding 4em 1.5em
-    text-align center
-    .items
-      margin-bottom 2.5em
-      .item
-        display inline-block
-        max-width 60px
-        margin 0 .8em
-        position relative
-        img
-          max-height 20px
-
+    .partners
+      color white
+      background #787878
+      padding 4em 1.5em
+      text-align center
+      .items
+        margin-bottom 2.5em
+        .item
+          display inline-block
+          max-width 60px
+          margin 0 .8em
+          position relative
+          img
+            max-height 20px
+    .form
+      display none
+      text-align center
+      background color-blue
+      padding 4em 0
+      .form-content
+        .form-input
+          border-radius 0
+          display block
+          box-sizing border-box
+          width 100%
+          margin 0 0 1.3em 0
+          padding .8em
+          outline none
+          border none
+        textarea
+          height 7em
+      .thanx
+        display none
   @media (min-width mup)
     .title
       font-size 2.3em
@@ -197,12 +216,22 @@ section.main.about
           margin-bottom 1.2em
         p
           font-size 1em
-
     .partners-block
-      .items
-        margin-bottom 3em
-        .item
-          max-width 170px
-          margin 0 2.5em
-          img
-            max-height 50px
+      .partners
+        .items
+          margin-bottom 3em
+          .item
+            max-width 170px
+            margin 0 2.5em
+            img
+              max-height 50px
+      .form
+        .form-content
+          input.form-input
+            float left
+            width calc(33.3% - .85em)
+            margin-right 1.3em
+            &:last-of-type
+              margin-right 0
+          textarea
+            height 12em

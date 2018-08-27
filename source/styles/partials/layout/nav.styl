@@ -3,7 +3,7 @@ nav.main
   background white
   @extend .clearfix
   position relative
-  z-index 3
+  z-index 11
   .logo
     display inline-block
     width 138px
@@ -110,6 +110,10 @@ nav.main
         &.__active
           color black
           border-bottom-color color-blue
+        &:hover
+          text-decoration none
+          &:not(.__active)
+            color color-blue !important
     &.__black
       .menu
         a

@@ -2,6 +2,7 @@ import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
 import lozad from 'lozad'
 import 'intersection-observer'
+import 'jquery-form'
 
 class About {
   constructor(options) {
@@ -32,6 +33,25 @@ class About {
         }
       }
     }).observe()
+
+    this.elem.click(e => {
+      if($(e.target).closest('.become').length &&
+      this.elem[0].contains(e.target)) {
+        this.showForm()
+      }
+    })
+  }
+
+  showForm() {
+    let formElem = this.elem.find('.partners-block .form')
+    this.elem.find('.partners-block .partners').fadeOut(400, () => {
+      formElem.fadeIn()
+      formElem.ajaxForm(() => {
+        formElem.find('.form-content').fadeOut(400, () => {
+          formElem.find('.thanx').fadeIn()
+        })
+      })
+    })
   }
 
   animateAbout(elem) {
