@@ -103,6 +103,27 @@ section.main.support
           border-top-color #d0d0d0
   .col
     margin-bottom 4em
+  .partners-block
+    padding 1em 0 2em
+    background color-blue
+    min-height 7em
+    [type='text'], [type='email'], [type='tel'], textarea
+      text-transform uppercase
+      outline none
+      border-radius 0
+      padding .3em 1em
+      box-sizing border-box
+      width 100%
+      margin-bottom 1em
+      font-size 1.1em
+      border none
+    textarea
+      height 7em
+    .button-component
+      background black
+      border-color black
+    .thanx
+      display none
 
   @media (min-width mup)
     padding-top .5em
@@ -164,5 +185,25 @@ section.main.support
         width auto
     .col.__right
       float right
+    .partners-block
+      padding 2.5em 0 4em 0
+      [type='text'], [type='email'], [type='tel']
+        float left
+        width 32%
+        margin-right 2%
+        padding .8em 1em
+        font-size .92em
+        margin-bottom 1.2em
+        &.__last
+          margin-right 0
+      textarea
+        clear both
+        padding .5em 1em
+        height 9em
+        font-size .92em
+      .button-component
+        font-size .92em
+        padding .7em 2em
+        outline none
 
 
