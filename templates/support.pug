@@ -32,3 +32,17 @@ block body
           .block-title Repairs
           each val in [1,2,3,4,5]
             .row: .title: a(href='#') Ноw I can buy that bike in USA?
+    //Форма отправлятеся аяксом
+    form.partners-block
+      .site-container
+        .container
+          .form-content
+            .page-title Become a partner
+            input(type='text', placeholder='Name', required)
+            input(type='email', placeholder='Email', required)
+            input.__last(type='tel', placeholder='Phone number')
+            textarea(placeholder='Introduce yourself', required)
+            .text-center
+              button.button-component Apply
+          .thanx
+            .page-title Thank you!
