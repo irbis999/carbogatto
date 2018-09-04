@@ -214,7 +214,6 @@ class Slides {
 
     this.busy = true
     //Снимаем флаг просмотренности для видео на слайде с которого ушли
-    //актуально для винды и мобайла
     this.currentVideoElem.data('played', false)
     //Инерция у скрола большая на мак ос и маленькая у всех остальных
     let delay = 100
@@ -243,7 +242,7 @@ class Slides {
 
   fallbackWheelListener(e) {
     e.preventDefault()
-    //Если переход в процессе, то ничего не делаем
+    //Если переход или подгрузка видео в процессе, то ничего не делаем
     if (this.busy) return
 
     //Направление скрола
@@ -254,8 +253,13 @@ class Slides {
       direction = 'prev'
     }
 
-    //Если внутри элемента есть не просмотренное видео то смотрим видео
-    //и мы скролим вниз
+    //Если внутри элемента есть не загруженное видео
+    //то ждем пока оно загрузится
+    if(this.currentVideoElem.length &&
+      !this.currentVideoElem.data('loaded')) {
+      return
+    }
+
     //Если мы скролим вниз и внутри элемента
     // есть не просмотренное видео то смотрим видео
     if (direction === 'next' &&
@@ -294,6 +298,13 @@ class Slides {
       direction = 'prev'
     }
 
+    //Если внутри элемента есть не загруженное видео
+    //то ждем пока оно загрузится
+    if(this.currentVideoElem.length &&
+      !this.currentVideoElem.data('loaded')) {
+      return
+    }
+
     //Если внутри элемента есть видео
     if (this.currentVideoElem.length) {
       this.playVideo(delta)
@@ -322,6 +333,12 @@ class Slides {
 
   playVideo(delta) {
     requestAnimationFrame(() => {
+      //В сафари присутствует глюк. При попытке первый раз прокрутить первое видео
+      //видео пропадает - как будто оно полностью прозрачное
+      //если при этом изменить какое-то css-свойство элемента, то глюк пропадает
+      //поэтому поставим какие-нибудь свойство, которое не влияет на внешний вид и нам вообще не важно
+      this.currentVideoElem.css('backface-visibility', 'hidden')
+
       let currentTime = this.currentVideoElem[0].currentTime
       let duration = this.currentVideoElem.data('duration')
       //43 - speed, 12 - duration - top video
@@ -378,19 +395,33 @@ class Slides {
       //ext = '.webm'
     }
 
+    let src = this.currentVideoElem.data('src')
+    //TODO убрать замену домена в продакшене
+    //src = src.replace('..', 'http://irbisc.tmweb.ru/cb4')
+    //http://irbisc.tmweb.ru/cb4/build/img/pages/index/top
+    //../build/img/pages/index/battery
+    //TODO убрать random в продакшне
+    let ver = 8
+
     this.currentVideoElem
-      .attr('src', `${this.currentVideoElem.data('src')}${ext}?ver=7`)
+      .attr('src', `${src}${ext}?ver=${ver}`)
       .attr('preload', 'auto')
       .prop('preload', 'auto')
       .data('inited', true)
 
-    //Отслеживаем загрузку видео. Пока не используется
-    //this.currentVideoElem.on('progress', e => {
-    //  if (!e.target.buffered.length) return
-    //  if ($(e.target).data('duration') <= e.target.buffered.end(0)) {
-    //    console.log('loaded')
-    //  }
-    //})
+    //Отслеживаем загрузку видео
+    this.currentVideoElem.on('progress', e => {
+      if(this.currentVideoElem.data('loaded')) return
+      if (!e.target.buffered.length) return
+      console.log('progress', e.target.buffered.end(0))
+      if ($(e.target).data('duration') - 1 <= e.target.buffered.end(0)) {
+        console.log('loaded')
+        this.currentVideoElem.data('loaded', true)
+        this.currentVideoElem[0].click()
+        this.currentVideoElem.closest('.video-block, .video-container')
+          .find('.preloader').remove()
+      }
+    })
   }
 }
 

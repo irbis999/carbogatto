@@ -5,11 +5,17 @@
   height 100vh
   box-sizing border-box
 
-//На десктопах нет прелоадера
+//На десктопах прелоадер меняет свой вид
 html.desktop
   section.main.index
     .preloader
-      display none !important
+      width 100px !important
+      height 100px !important
+      background image-url('pages/index/preloader-no-bg.png') no-repeat top center / contain !important
+      left 50% !important
+      top 50% !important
+      margin -50px 0 0 -50px !important
+      animation rotate 1s infinite
 
 section.main.index
   color white
