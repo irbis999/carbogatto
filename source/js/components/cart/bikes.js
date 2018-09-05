@@ -1,9 +1,9 @@
 export default class BikesCart {
-  //bike: {frameId: Number, frameName: String, framePrice: Number,
-  // batteryId: Number,  batteryName: String, batteryPrice: Number,
-  // motorId: Number, motorName: String, motorPrice: Number,
-  // tyresId: Number, tyresName: String, tyresPrice: Number,
-  // detailsId: Number, linksId: Number}
+  //bike: {frameId: required, frameName: required, framePrice: Number,
+  // batteryId: required,  batteryName: required, batteryPrice: Number,
+  // motorId: required, motorName: required, motorPrice: Number,
+  // tyresId: required, tyresName: required, tyresPrice: Number,
+  // detailsId: required, linksId: required}
   static addBike(bike, updateNum = false) {
     if (!this.checkBikeFormat(bike)) {
       return
@@ -34,13 +34,13 @@ export default class BikesCart {
     let cart = this.getCart()
     //console.log(bike, cart)
     return cart.findIndex(elem => {
-      if(bike.frameId === elem.frameId &&
-      bike.batteryId === elem.batteryId &&
-      bike.motorId === elem.motorId &&
-      bike.tyresId === elem.tyresId &&
-      bike.colorId === elem.colorId &&
-      bike.detailsId === elem.detailsId &&
-      bike.linksId === elem.linksId) {
+      if(bike.frameId == elem.frameId &&
+      bike.batteryId == elem.batteryId &&
+      bike.motorId == elem.motorId &&
+      bike.tyresId == elem.tyresId &&
+      bike.colorId == elem.colorId &&
+      bike.detailsId == elem.detailsId &&
+      bike.linksId == elem.linksId) {
         return true
       }
     })
@@ -83,33 +83,34 @@ export default class BikesCart {
   }
 
   static checkBikeFormat(bike) {
-    if (typeof bike.colorId !== 'number') {
-      console.error('colorId must be number')
+    console.log(bike)
+    if (!bike.colorId) {
+      console.error('colorId must be present')
       return false
     }
     if (typeof bike.num !== 'number') {
       console.error('num must be number')
       return false
     }
-    if (typeof bike.frameId !== 'number') {
-      console.error('frameName must be number')
+    if (!bike.frameId) {
+      console.error('frameId must be present')
       return false
     }
-    if (typeof bike.batteryId !== 'number') {
-      console.error('batteryName must be number')
+    if (!bike.batteryId) {
+      console.error('batteryId must be present')
       return false
     }
-    if (typeof bike.motorId !== 'number') {
-      console.error('motorName must be number')
+    if (!bike.motorId) {
+      console.error('motorId must be present')
       return false
     }
-    if (typeof bike.tyresId !== 'number') {
-      console.error('tyresName must be number')
+    if (!bike.tyresId) {
+      console.error('tyresId must be present')
       return false
     }
 
-    if (typeof bike.frameName !== 'string') {
-      console.error('frameName must be number')
+    if (!bike.frameName) {
+      console.error('frameName must be present')
       return false
     }
     if (typeof bike.framePrice !== 'number') {
@@ -117,24 +118,24 @@ export default class BikesCart {
       return false
     }
 
-    if (typeof bike.batteryName !== 'string') {
-      console.error('batteryName must be number')
+    if (!bike.batteryName) {
+      console.error('batteryName must be present')
       return false
     }
     if (typeof bike.batteryPrice !== 'number') {
       console.error('batteryPrice must be number')
       return false
     }
-    if (typeof bike.motorName !== 'string') {
-      console.error('motorName must be number')
+    if (!bike.motorName) {
+      console.error('motorName must be present')
       return false
     }
     if (typeof bike.motorPrice !== 'number') {
       console.error('motorPrice must be number')
       return false
     }
-    if (typeof bike.tyresName !== 'string') {
-      console.error('tyresName must be number')
+    if (!bike.tyresName) {
+      console.error('tyresName must be present')
       return false
     }
     if (typeof bike.tyresPrice !== 'number') {
@@ -142,13 +143,13 @@ export default class BikesCart {
       return false
     }
 
-    if (typeof bike.detailsId !== 'number') {
-      console.error('detailsId must be number')
+    if (!bike.detailsId) {
+      console.error('detailsId must be present')
       return false
     }
 
-    if (typeof bike.linksId !== 'number') {
-      console.error('linksId must be number')
+    if (!bike.linksId) {
+      console.error('linksId must be present')
       return false
     }
 

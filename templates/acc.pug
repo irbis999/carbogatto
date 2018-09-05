@@ -29,7 +29,7 @@ block body
                     data-name - название аксессуара
                     data-price - цена аксессуара (целое число)
                     после нажатия на эту кнопку аксессуар кладется в корзину (корзина написана на js, т.к. в ней много интерактива)
-                  .button-component.__cart-button.__blue(data-id=val,
+                  .button-component.__cart-button.__blue(data-id=`id_${val}`,
                   data-name='Grips',
                   data-price=(500 * val)) BUY FOR 500 €
               .text-bottom
