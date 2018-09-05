@@ -1,12 +1,12 @@
 export default class AccCart {
-  //acc: {id: Number, name: String, num: Number, price: String}
+  //acc: {id: required, name: required, num: Number, price: Number}
   static addAcc(acc, updateNum = false) {
     if (!this.checkAccFormat(acc)) {
       return
     }
 
     let cart = this.getCart()
-    let index = cart.findIndex(elem => elem.id === acc.id)
+    let index = cart.findIndex(elem => elem.id == acc.id)
     //Товар уже в корзине
     if (index !== -1) {
       if(updateNum) {
@@ -28,7 +28,7 @@ export default class AccCart {
 
   static deleteAcc(id) {
     let cart = this.getCart()
-    let index = cart.findIndex(elem => elem.id === id)
+    let index = cart.findIndex(elem => elem.id == id)
     if(index === -1) {
       return
     }
@@ -63,8 +63,9 @@ export default class AccCart {
   }
 
   static checkAccFormat(acc) {
-    if (typeof acc.id !== 'number') {
-      console.error('id must be number')
+    console.log(acc)
+    if (!acc.id) {
+      console.error('id must be present')
       return false
     }
     if (typeof acc.num !== 'number') {
@@ -75,8 +76,8 @@ export default class AccCart {
       console.error('price must be number')
       return false
     }
-    if (typeof acc.name !== 'string') {
-      console.error('name must be number')
+    if (!acc.name) {
+      console.error('name must be present')
       return false
     }
     return true

@@ -170,7 +170,7 @@ class OrderModal {
   changeAccAmount(e) {
     let id = $(e.target).closest('tr').data('id')
     let cart = AccCart.getCart()
-    let index = cart.findIndex(elem => elem.id === id)
+    let index = cart.findIndex(elem => elem.id == id)
     let acc = cart[index]
     acc.num = +$(e.target).val()
     AccCart.addAcc(cart[index], true)
