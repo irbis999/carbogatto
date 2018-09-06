@@ -30,17 +30,15 @@ section.main.index
       p
         width auto
         margin-bottom .5em
-      @media (max-aspect-ratio index-small)
-        .title
-          margin-bottom .5em
-        .bike-icon
-          margin-bottom 5em
-        p
-          margin-bottom 2em
-      @media (max-aspect-ratio index-medium)
-        .title
-          margin-bottom 1.5em
-        p
-          margin-bottom 4em
+
+      @media (min-height 700px)
+        display grid
+        grid-auto-flow column
+        grid-template-rows .5fr 3fr 1fr 1fr
+        .bike-icon, p
+          margin-bottom 0
+      @media (min-height 800px)
+        grid-template-rows .8fr 2.8fr 1fr 1fr
       @media (max-aspect-ratio index-large)
         min-height 0
+        grid-template-rows 1fr 440px 1.4fr 1fr
