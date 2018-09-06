@@ -75,7 +75,7 @@ class Slides {
   initMobile() {
     //На телефонах показывается одно видео и один постер
     //на планшетах - другой постер и другое видео
-    if(device.mobile()) {
+    if (device.mobile()) {
       this.initMobilePosters()
     } else {
       this.initDesktopPosters()
@@ -137,7 +137,7 @@ class Slides {
       //Ставим исходник. У планшетов десктопный исходник, у телефонов - мобильный
       //у десктопного исходника нет расширения в дата-атрибуте
       let src = `${video.data('src')}.mp4?ver=7`
-      if(device.mobile()) {
+      if (device.mobile()) {
         src = video.data('src-mob') + '?ver=7'
       }
       video
@@ -255,7 +255,7 @@ class Slides {
 
     //Если внутри элемента есть не загруженное видео
     //то ждем пока оно загрузится
-    if(this.currentVideoElem.length &&
+    if (this.currentVideoElem.length &&
       !this.currentVideoElem.data('loaded')) {
       return
     }
@@ -300,7 +300,7 @@ class Slides {
 
     //Если внутри элемента есть не загруженное видео
     //то ждем пока оно загрузится
-    if(this.currentVideoElem.length &&
+    if (this.currentVideoElem.length &&
       !this.currentVideoElem.data('loaded')) {
       return
     }
@@ -411,10 +411,10 @@ class Slides {
 
     //Отслеживаем загрузку видео
     this.currentVideoElem.on('progress', e => {
-      if(this.currentVideoElem.data('loaded')) return
+      if (this.currentVideoElem.data('loaded')) return
       if (!e.target.buffered.length) return
       console.log('progress', e.target.buffered.end(0))
-      if ($(e.target).data('duration') - 1 <= e.target.buffered.end(0)) {
+      if ($(e.target).data('duration') - 2 <= e.target.buffered.end(0)) {
         console.log('loaded')
         this.currentVideoElem.data('loaded', true)
         this.currentVideoElem[0].click()
