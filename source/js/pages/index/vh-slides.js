@@ -2,15 +2,10 @@ import 'jquery.scrollto'
 import device from 'current-device'
 import _debounce from 'lodash.debounce'
 import supportsVideoType from '@/components/supports_video_type'
-
-function isSafari() {
-  return /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor)
-}
+import isSafari from '@/components/is_safari'
 
 class Slides {
   constructor(options) {
-    //return
-
     this.elem = options.elem
     this.busy = false
     //Отматываем страницу наверх и ставим первый слайд и первое видео
@@ -236,6 +231,10 @@ class Slides {
 
   resizeAdjust() {
     if (device.desktop()) {
+      if(this.currentSlideElem.is('.__first')) {
+        $.scrollTo($('body'), 400)
+        return
+      }
       $.scrollTo(this.currentSlideElem, 400)
     }
   }
@@ -402,6 +401,7 @@ class Slides {
     //../build/img/pages/index/battery
     //TODO убрать random в продакшне
     let ver = 8
+    //ver = Math.random()
 
     this.currentVideoElem
       .attr('src', `${src}${ext}?ver=${ver}`)
@@ -417,7 +417,7 @@ class Slides {
       if ($(e.target).data('duration') - 2 <= e.target.buffered.end(0)) {
         console.log('loaded')
         this.currentVideoElem.data('loaded', true)
-        this.currentVideoElem[0].click()
+        //this.currentVideoElem[0].click()
         this.currentVideoElem.closest('.video-block, .video-container')
           .find('.preloader').remove()
       }

@@ -1,3 +1,5 @@
+import isSafari from '@/components/is_safari'
+
 class Index {
   constructor(options) {
     this.elem = options.elem
@@ -6,6 +8,17 @@ class Index {
     this.iconElem = this.soundElem.find('.icon')
 
     this.iconElem.click(this.toggleSound.bind(this))
+    //Все браузеры кроме сафари могут запустить звук сразу без пользовательского клика
+    //у элемента audio стоит атрибут autoplay
+    //сафари не может этого сделать, меняем значок поэтому
+    if(!isSafari()) {
+      this.audioElem.attr('autoplay', 'autoplay')
+      //Бывает, что все же автоматически аудио не запускается
+      setTimeout(() => {
+        if(this.audioElem[0].paused) return
+        this.soundElem.addClass('__on')
+      }, 500)
+    }
   }
 
   toggleSound() {
