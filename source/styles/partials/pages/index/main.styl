@@ -9,13 +9,47 @@
 html.desktop
   section.main.index
     .preloader
-      width 100px !important
-      height 100px !important
-      background image-url('pages/index/preloader-no-bg.png') no-repeat top center / contain !important
-      left 50% !important
-      top 50% !important
-      margin -50px 0 0 -50px !important
-      animation rotate 1s infinite
+      display none
+    video
+      opacity 0
+      transition opacity 1.5s
+      &.__inited
+        opacity 1
+    .desktop-preloader
+      display block
+      position absolute
+      left 50%
+      top 50%
+      margin -50px 0 0 -36px
+      z-index 2
+      .preloader-icon
+        width 72px
+        height 82px
+        overflow hidden
+        position relative
+        margin-bottom 12px
+        &-conic
+          position absolute
+          left -15%
+          top -15%
+          width 130%
+          height 130%
+          background image-url('pages/index/conic-gradient.png') center center no-repeat
+          background-size 100%
+          animation rotate 4s linear infinite
+        &-hex
+          position absolute
+          left 0
+          top 0
+          width calc(100% + 2px)
+          height calc(100% + 2px)
+          margin -1px
+          background no-repeat image-url('pages/index/conic-hex.svg?ver=1') top center / contain
+      .preloader-text
+        font-size 15px
+        color color-blue
+        text-transform uppercase
+        text-align center
 
 section.main.index
   color white
@@ -23,6 +57,11 @@ section.main.index
   background black
   //Без рамки снизу глюк - белая полоса
   border-bottom 1px solid black
+  //Иконка меню
+  .menu-button
+    display none
+  .desktop-preloader
+    display none
   //Иконка вкл/выкл звук
   .sound
     audio
@@ -194,6 +233,18 @@ section.main.index
 
   @media (min-width mup)
     overflow hidden
+    .menu-button
+      display block
+      position fixed
+      right 20px
+      top 20px
+      fill color-blue
+      cursor pointer
+      width 40px
+      height @width
+      z-index 4
+      &.__hidden
+        visibility hidden
     .sound
       .icon
         width 40px
@@ -201,8 +252,10 @@ section.main.index
         left 10px
         right auto
         top 100px
+
     .relative-container
       margin-top 1.5em
+
     .video-container
       width initial
       margin-left initial
@@ -217,6 +270,7 @@ section.main.index
         margin-top 0
       .top-line
         top 0
+
     .text-block
       //Без рамки глюки - какой-то отсутп сверху возникает
       border 1px solid transparent
@@ -225,12 +279,14 @@ section.main.index
       margin-right 0
       z-index 2
       height auto
+
     .button
       font-size 1.19em
       background-size 10px auto
       background-position calc(100% - 10px) .6em
       padding .5em 3em
       border-width 1.5px
+
     p
       text-align center
       margin-top 0
@@ -243,12 +299,14 @@ section.main.index
       padding-right 2em
       box-sizing border-box
       text-shadow: 1px 1px 2px black
+
     .title
       font-size 2.38em
       &.__absolute
         top 0
         padding-bottom .8em
         background linear-gradient(to bottom, rgba(black, 1), rgba(black, 1) 1.7em, rgba(black, 0))
+
     .icons-block
       width 240px
       top 120px
@@ -288,6 +346,7 @@ section.main.index
         .icons-text
           margin-left 95px
           font-size 1.19em
+
     @media (max-aspect-ratio index-small)
       .video-container
         .preloader

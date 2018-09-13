@@ -1,3 +1,5 @@
+include ../../mixins/svg
+
 .top-block.vh-slide.__first
   .site-container
     .container
@@ -9,6 +11,7 @@
         //К data-src станет src с расширением webm|mp4 - js это сделает
         .bottom-line
         .preloader
+        include desktop-preloader
         video(preload='auto',
         muted,
         playsinline,

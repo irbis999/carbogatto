@@ -34,36 +34,36 @@ gulp.task("styles", function () {
     }))
   }
 
-  return combiner(gulp.src("source/styles/app.styl"),
+  return combiner(gulp.src("styles/app.styl"),
     gulpIf(isDevelopment, sourcemaps.init()),
     stylus(),
     postcss(processors),
     gulpIf(isDevelopment, sourcemaps.write()),
     gulpIf(!isDevelopment, rev()),
-    gulp.dest("build/styles"),
+    gulp.dest("../build/styles"),
     rev.manifest("styles.json"),
-    gulp.dest("build/styles"))
+    gulp.dest("../build/styles"))
 })
 
 gulp.task('styles:svg', () => {
-  return combiner(gulp.src('source/img/svg-sprite/*.svg'),
+  return combiner(gulp.src('img/svg-sprite/*.svg'),
     rename((path) => {
       path.basename = `svg-${path.basename}`
     }),
     svgstore(),
     gulpIf(!isDevelopment, rev()),
-    gulp.dest('build/styles'),
+    gulp.dest('../build/styles'),
     rev.manifest('svg-sprite.json'),
-    gulp.dest('build/styles'))
+    gulp.dest('../build/styles'))
 })
 
 gulp.task("assets:img", function () {
-  return gulp.src("source/img/**/*.*")
-    .pipe(gulp.dest("build/img"))
+  return gulp.src("img/**/*.*")
+    .pipe(gulp.dest("../build/img"))
 })
 
 gulp.task("clean", function () {
-  return del(["build/img", "build/styles"])
+  return del(["../build/img", "../build/styles"], {force: true})
 })
 
 gulp.task("gzip", function (callback) {
@@ -73,9 +73,9 @@ gulp.task("gzip", function (callback) {
     return
   }
 
-  return gulp.src("build/styles/*")
+  return gulp.src("../build/styles/*")
     .pipe(gzip())
-    .pipe(gulp.dest("build/styles"))
+    .pipe(gulp.dest("../build/styles"))
 })
 
 gulp.task("build", function (done) {
@@ -101,12 +101,12 @@ gulp.task("dev", function (done) {
 //Генерация html
 gulp.task("html", function (done) {
   //Ставим ссылки правильные в хтмл
-  let cssPath = JSON.parse(fs.readFileSync('./build/styles/styles.json').toString())['app.css']
-  let svgPath = JSON.parse(fs.readFileSync('./build/styles/svg-sprite.json').toString())['svg-sprite.svg']
-  let jsPath =  JSON.parse(fs.readFileSync('./build/js/js.json').toString()).app.js
-  let navPath = 'templates/layout/nav.pug'
+  let cssPath = JSON.parse(fs.readFileSync('../build/styles/styles.json').toString())['app.css']
+  let svgPath = JSON.parse(fs.readFileSync('../build/styles/svg-sprite.json').toString())['svg-sprite.svg']
+  let jsPath =  JSON.parse(fs.readFileSync('../build/js/js.json').toString()).app.js
+  let navPath = '../templates/layout/nav.pug'
   let nav = fs.readFileSync(navPath).toString()
-  let layoutPath = 'templates/layout/layout.pug'
+  let layoutPath = '../templates/layout/layout.pug'
   let layout = fs.readFileSync(layoutPath).toString()
   layout = layout.replace('app.css', cssPath)
   layout = layout.replace('svg-sprite.svg', svgPath)
