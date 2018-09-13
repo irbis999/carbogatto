@@ -7,6 +7,7 @@ import isSafari from '@/components/is_safari'
 class Slides {
   constructor(options) {
     this.elem = options.elem
+    this.menuButtonElem = this.elem.find('.menu-button')
     this.busy = false
     //Отматываем страницу наверх и ставим первый слайд и первое видео
     if (device.desktop()) {
@@ -43,6 +44,11 @@ class Slides {
 
     //При ресайзе нужно подкрутить прокрутку к текущему слайду
     $(window).resize(_debounce(this.resizeAdjust.bind(this), 400))
+
+    //На десктопе показывается иконка меню. По клику не нее отметываем на первый слайд
+    this.menuButtonElem.click(() => {
+      this.move('prev', $(this.elem.find('.pagination svg').first().data('slide')))
+    })
   }
 
   initDesktopPosters() {
@@ -221,6 +227,12 @@ class Slides {
         this.currentSlideElem = nextSlide
         this.setCurrentPagElem()
         this.setCurrentVideo()
+        //Показываем/скрываем иконку меню
+        if(this.currentSlideElem.is('.__first')) {
+          this.menuButtonElem.addClass('__hidden')
+        } else {
+          this.menuButtonElem.removeClass('__hidden')
+        }
         //Даем скролу остановится
         setTimeout(() => {
           this.busy = false
@@ -396,12 +408,12 @@ class Slides {
 
     let src = this.currentVideoElem.data('src')
     //TODO убрать замену домена в продакшене
-    //src = src.replace('..', 'http://irbisc.tmweb.ru/cb4')
+    src = src.replace('..', 'http://irbisc.tmweb.ru/cb4')
     //http://irbisc.tmweb.ru/cb4/build/img/pages/index/top
     //../build/img/pages/index/battery
     //TODO убрать random в продакшне
     let ver = 8
-    //ver = Math.random()
+    ver = Math.random()
 
     this.currentVideoElem
       .attr('src', `${src}${ext}?ver=${ver}`)
@@ -416,10 +428,12 @@ class Slides {
       console.log('progress', e.target.buffered.end(0))
       if ($(e.target).data('duration') - 2 <= e.target.buffered.end(0)) {
         console.log('loaded')
-        this.currentVideoElem.data('loaded', true)
+        this.currentVideoElem
+          .data('loaded', true)
+          .addClass('__inited')
         //this.currentVideoElem[0].click()
         this.currentVideoElem.closest('.video-block, .video-container')
-          .find('.preloader').remove()
+          .find('.desktop-preloader').fadeOut(300)
       }
     })
   }

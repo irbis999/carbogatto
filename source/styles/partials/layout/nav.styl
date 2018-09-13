@@ -2,7 +2,8 @@ nav.main
   padding 10px 0 0 0
   background white
   @extend .clearfix
-  position relative
+  position sticky
+  top 0
   z-index 11
   .logo
     display inline-block
@@ -72,6 +73,7 @@ nav.main
   @media (min-width mup)
     @extend .clearfix
     padding 15px 30px
+    position relative
     .logo
       width 200px
       height 45px

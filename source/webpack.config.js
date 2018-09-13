@@ -5,7 +5,7 @@ const AssetsPlugin = require('assets-webpack-plugin')
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 function resolve() {
-  return path.join(__dirname, 'source', 'js')
+  return path.join(__dirname, 'js')
 }
 
 //Длинное кэширование используем только в проде, в деве руками в html вставляем ссылку на этот файл
@@ -19,10 +19,10 @@ if (NODE_ENV === 'production') {
 
 module.exports = {
   entry: {
-    app: './source/js/app.js'
+    app: './js/app.js'
   },
   output: {
-    path: __dirname + '/build/js',
+    path: __dirname + '/../build/js',
     filename: chunkFilename,
     publicPath: '/build/js/'
   },
@@ -35,7 +35,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      include: [__dirname + '/source/js'],
+      include: [__dirname + '/js'],
       loader: "babel-loader",
     }, {
       test: /\.css$/,
@@ -43,7 +43,7 @@ module.exports = {
     },
       {
         test: /\.pug$/,
-        include: [__dirname + '/source/js'],
+        include: [__dirname + '/js'],
         loader: "pug-loader",
       }],
   },
@@ -55,7 +55,7 @@ module.exports = {
     },
     new AssetsPlugin({
       filename: 'js.json',
-      path: __dirname + '/build/js',
+      path: __dirname + '/../build/js',
       fullPath: false
     }),
     new webpack.ProvidePlugin({
